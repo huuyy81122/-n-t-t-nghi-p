@@ -1,0 +1,70 @@
+.container {
+    width: 100%;
+ 
+  }
+
+  .banner{
+    width: 100%;
+    height: auto;
+  }
+
+  button{
+    width: 150px;
+    height: 40px;
+    color: white;
+    font-size: 15px;
+    background-color: #026BB4;
+    border: 1px solid #026BB4;
+   
+  }
+
+  .text-main{
+    padding: 5%;
+
+  }
+
+  .main{
+    width: 60%;
+    margin: auto;
+    margin-top: 40px;
+    background-color: #F3F0F0;
+  }
+
+  .img-main{
+    padding:40px 0;
+  }
+
+  .main-top{
+    margin-top: 20px;
+  }
+  
+  .chaomung{
+    max-width: 500px;
+    margin: auto;
+    padding: 40px 0;
+    overflow: hidden;
+    font-family: Inter, sans-serif; 
+    text-align: center;
+    word-wrap: break-word;
+    
+  }
+
+  hr{
+    padding-bottom:10px ;
+  }
+  :host ::ng-deep {
+    .product-item {
+        .product-item-content {
+            border: 1px solid var(--surface-d);
+            border-radius: 3px;
+            margin: .3rem;
+            text-align: center;
+            padding: 2rem 0;
+        }
+    
+        .product-image {
+            width: 50%;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+        }
+    }
+}

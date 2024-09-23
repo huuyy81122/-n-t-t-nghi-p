@@ -1,0 +1,107 @@
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+<div class="card">
+    <p-table
+        #dt2
+        [value]="data"
+        dataKey="id"
+        [rows]="10"
+        [paginator]="true"
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[10, 25, 50]"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [globalFilterFields]="['email', 'sdt']"
+        [tableStyle]="{ 'min-width': '75rem' }"
+        >
+        <ng-template pTemplate="caption">
+            <div style="justify-content: space-between;" class="flex">
+                <button (click)="showDialog(0)" style="background-color: #39a806; color: #fff; padding: 3px; width: 100px; border-radius: 100px; border: 0;">Thêm mới</button>
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt2.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width:10%">STT</th>
+                <th style="width:20%">Tên người dùng</th>
+                <th style="width:15%">Email</th>
+                <th style="width:15%">Số điện thoại</th>
+                <th style="width:15%">Vai trò truy cập</th>
+                <th style="width:20%">Thao tác</th>
+            </tr>
+           
+        </ng-template>
+        <ng-template pTemplate="body" let-rowIndex="rowIndex" let-data>
+            <tr>
+                <td>
+                    {{ rowIndex + 1 }}
+                </td>
+                <td>
+                    {{ data.firstName + " " + data.lastName }}
+                </td>
+                <td>
+                    <span class="ml-1 vertical-align-middle">{{ data.email }}</span>
+                </td>
+                <td>
+                    <span class="ml-1 vertical-align-middle">{{ data.sdt }}</span>
+                </td>
+                <td>
+                    <span class="ml-1 vertical-align-middle">{{ data.idRole === 1? 'Quản trị hệ thống' : data.idRole === 2 ? 'Khách hàng' : data.idRole === 3 ? 'Quản lý' : 'Nhân viên giao hàng' }}</span>
+                </td>
+                <td>
+                    <button (click)="showDialog(1, data.id)" style="background-color: #b7861d; color: #fff; padding: 7px; width: 50px; border-radius: 100px; border: #1f3080 1px solid; margin-left: 5px;">Sửa</button>
+                    <button (click)="deleteDotTuyenSinh(data.id)" style="background-color: #dd1616; color: #fff; padding: 7px; width: 50px; border-radius: 100px; border: red 1px solid; margin-left: 5px;">Xóa</button>
+                </td>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="5">Không có dữ liệu.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-dialog header="Header" [modal]="true" [(visible)]="visible" [style]="{width: '50vw'}" [maximizable]="true">
+    <form [formGroup]="formBuilder">
+        <div>
+            <label>Họ</label>
+            <input style="width: 100%;" class="p-inputtext-sm mt-2" formControlName="ho" type="text" placeholder="Nhập họ người dùng" pInputText >
+            <small *ngIf="formBuilder.controls.ho.invalid && (formBuilder.controls.ho.touched || submitted)" class="p-error">Họ là bắt buọc</small>
+        </div>
+        <div style="margin-top: 10px;">
+            <label>Tên</label>
+            <input style="width: 100%;" class="p-inputtext-sm mt-2" formControlName="ten" type="text" placeholder="Nhập tên người dùng" pInputText >
+            <small *ngIf="formBuilder.controls.ten.invalid && (formBuilder.controls.ten.touched || submitted)" class="p-error">Tên là bắt buộc</small>
+        </div>
+        <div style="margin-top: 10px; display: flex; flex-direction: column;">
+            <label>Vai trò truy cập</label>
+            <p-dropdown class="p-inputtext-sm mt-2" styleClass="prime-override-max-width" [options]="listRole" formControlName="idRole" optionLabel="roleName" optionValue="idRole" placeholder="Lựa chọn vai trò người dùng"></p-dropdown>
+            <small *ngIf="formBuilder.controls.idRole.invalid && (formBuilder.controls.idRole.touched || submitted)" class="p-error">Vai trò người dùng là bắt buộc</small>
+        </div>
+        <div style="margin-top: 10px;">
+            <label>Email</label>
+            <input style="width: 100%;" class="p-inputtext-sm mt-2" formControlName="email" type="text" placeholder="Nhập email" pInputText >
+            <small *ngIf="formBuilder.controls.email.invalid && (formBuilder.controls.email.touched || submitted)" class="p-error">Email là bắt buộc</small>
+        </div>
+        <div style="margin-top: 10px;">
+            <label>Số điện thoại</label>
+            <input style="width: 100%;" class="p-inputtext-sm mt-2" formControlName="sdt" type="text" placeholder="Nhập số điện thoại" pInputText >
+            <small *ngIf="formBuilder.controls.sdt.invalid && (formBuilder.controls.sdt.touched || submitted)" class="p-error">Số điện thoại là bắt buộc</small>
+        </div>
+        <div style="margin-top: 10px;">
+            <label>Mật khẩu</label>
+            <input style="width: 100%;" class="p-inputtext-sm mt-2" formControlName="password" type="text" placeholder="Nhập mật khẩu" pInputText >
+            <small *ngIf="formBuilder.controls.password.invalid && (formBuilder.controls.password.touched || submitted)" class="p-error">Mật khẩu là bắt buộc</small>
+        </div>
+    </form>
+    <div style="margin-top: 10px;">
+        <label>Khu vực giao hàng</label>
+        <input (ngModelChange)="onChangeKhuVuc($event)" [(ngModel)]="khuVucGiaoHang" style="width: 100%;" class="p-inputtext-sm mt-2"  type="text" placeholder="Nhập khu vực giao hàng" pInputText >
+    </div>
+    <div style="display: flex; justify-content: end;">
+        <button *ngIf="status != 2" (click)="handleCreateUser()" class="mt-4" style="background-color: #1f3080; color: #fff; padding: 8px; width: 100px; border-radius: 100px; border: #1f3080 1px solid; margin-left: 5px;">Lưu thay đổi</button>
+        <button *ngIf="status == 2" (click)="closeDialog()" class="mt-4" style="background-color: #1f3080; color: #fff; padding: 8px; width: 100px; border-radius: 100px; border: #1f3080 1px solid; margin-left: 5px;">Ok</button>
+    </div>
+</p-dialog>

@@ -1,0 +1,58 @@
+
+    <div>
+        <div style="margin: 0px 60px;">
+            <div style="font-size: 20px; font-weight: 500; color: #453d3b; margin-bottom: 30px; font-weight: 600; margin-top: 20px;">Đơn hàng cần xử lý</div>
+            <p-table [value]="danhSachs" [tableStyle]="{ 'min-width': '70rem' }">
+              <ng-template pTemplate="header">
+                  <tr>
+                      <th>STT</th>
+                      <th>Mã đơn hàng</th>
+                      <th>Hình thức vận chuyển</th>
+                      <th>Giá</th>
+                      <th>Khối lượng vận chuyển</th>
+                      <th>Người vận chuyển</th>
+                      <th>Trạng thái đơn hàng</th>
+                      <th>Ghi chú</th>
+                      <th>Ngày tạo</th>
+                      <th>Thao tác</th>
+                  </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowIndex="rowIndex" let-data>
+                  <tr>
+                      <td style="font-size: 14px;">
+                        {{ rowIndex + 1 }}
+                      </td>
+                      <td>
+                        {{ data.shippingCode }}
+                      </td>
+                      <td>
+                        {{ data.hinhThuc }}
+                      </td>
+                      <td>
+                        {{ data.priceValue | number }} ₫
+                      </td>
+                      <td>
+                        {{ data.khoiLuong }}
+                      </td>
+                      <td>
+                        {{ data.nguoiGiao !== ' ' ? data.nguoiGiao :"Chưa có người giao"}}
+                      </td>
+                      <td>
+                        {{ data.trangThai }}
+                      </td>
+                      <td>
+                        {{ data.note }}
+                      </td>
+                      <td>
+                        {{ data.createDate | date }}
+                      </td>
+                      <td>
+                        <button  style="background-color: cadetblue; border: 1px cadetblue solid; border-radius: 4px;"><i class="pi pi-file-edit" style="color: #fff"></i></button>
+                        <button style="margin-left: 10px; background-color: green;border: 0px green solid; border-radius: 4px;"><i class="pi pi-phone" style="color: #fff"></i></button>
+                        <button *ngIf="data.orderStatusId === 1" (click)="pay(data.orderId)" style="margin-left: 10px; background-color: goldenrod;border: 0px goldenrod solid; border-radius: 4px;"><i class="pi pi-wallet" style="color: #fff"></i></button>
+                      </td>
+                    </tr>
+              </ng-template>
+          </p-table>
+          </div>
+    </div>

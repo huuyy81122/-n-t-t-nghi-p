@@ -1,0 +1,108 @@
+<div *ngIf="vnp_ResponseCode === '00'" style="display: flex; justify-content: center; flex-direction: column; margin-top: 60px;">
+  <i class="pi pi-check-circle" style="font-size: 6rem; color: green; text-align: center;"></i>
+  <div style="margin-top: 30px;">
+    <h3 style="text-align: center; color: green;">Thanh toán thành công</h3>
+  </div>
+  <div class="container">
+    <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="invoice-title">
+                            <h5 class="float-end font-size-15">Invoice {{ vnp_BankTranNo }} <span class="badge bg-success font-size-12 ms-2">Paid</span></h5>
+                            <div class="mb-4">
+                               <h5 class="mb-1 text-muted">Hệ thống giao hàng</h5>
+                            </div>
+                            <!-- <div class="text-muted">
+                                <p class="mb-1">55 Giải phóng, phường Đồng Tâm, Hai Bà Trưng, Hà Nội</p>
+                                <p class="mb-1"><i class="uil uil-envelope-alt me-1"></i>tuyensinh@huce.com</p>
+                                <p><i class="uil uil-phone me-1"></i> 012-345-6789</p>
+                            </div> -->
+                        </div>
+    
+                        <hr class="my-4">
+    
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="text-muted">
+                                    <h6 class="font-size-16 mb-3" style="font-weight: 600;">Người thanh toán:</h6>
+                                    <h6 class="font-size-15 mb-2">{{user.name}}</h6>
+                                    <p class="mb-1">{{user.email}}</p>
+                                    <p>{{user.sdt}}</p>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                            <div class="col-sm-6">
+                                <div class="text-muted text-sm-end">
+                                    <div>
+                                        <h6 class="font-size-15 mb-1" style="font-weight: 600;">Số hóa đơn:</h6>
+                                        <p>{{ vnp_TxnRef }}</p>
+                                    </div>
+                                    <div class="mt-4">
+                                        <h6 class="font-size-15 mb-1" style="font-weight: 600;">Ngày thanh toán:</h6>
+                                        <p>{{currentDate | date}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                        
+                        <div class="py-2">
+                            <h6 class="font-size-15" style="font-weight: 600;">Chi tiết thanh toán</h6>
+    
+                            <div class="table-responsive">
+                                <table class="table align-middle table-nowrap table-centered mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 70px;">STT</th>
+                                            <th colspan="2">Khoản thu</th>
+                                            <th>Nội dung thanh toán</th>
+                                            <th class="text-end" style="width: 120px;">Thành tiền</th>
+                                        </tr>
+                                    </thead><!-- end thead -->
+                                    <tbody>
+                                        <tr>
+                                            <th >01</th>
+                                            <td>
+                                                <div>
+                                                    <p class="font-size-14 mb-1">Thanh toán đơn hàng</p>
+                                                </div>
+                                            </td>
+                                            <td colSpan="2">{{vnp_OrderInfo}}</td>
+                                            <td class="text-end">{{vnp_Amount/100 | number }} ₫</td>
+                                        </tr>
+                                        <!-- end tr -->
+                                        <tr>
+                                            <td colSpan="5" class="m-0 fw-semibold">
+                                                <div style="display: flex; justify-content: end;">
+                                                    <div style="display: flex">
+                                                        <div style="margin-right: 10px;">Tổng tiền</div> 
+                                                        <h4>{{vnp_Amount/100 | number }} ₫</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <!-- end tr -->
+                                    </tbody><!-- end tbody -->
+                                </table><!-- end table -->
+                            </div><!-- end table responsive -->
+                            <div class="d-print-none mt-4">
+                                <div class="float-end">
+                                    <a href="javascript:window.print()" class="btn btn-success me-1"><i class="fa fa-print"></i></a>
+                                    <a href="#" class="btn btn-primary w-md">Quay trở lại</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end col -->
+        </div>
+    </div>
+</div>
+<div *ngIf="vnp_ResponseCode !== '00' || vnp_ResponseCode === undefined" style="display: flex; justify-content: center; flex-direction: column; margin-top: 60px;">
+    <i class="pi pi-times" style="font-size: 6rem; color: red; text-align: center;"></i>
+    <div style="margin-top: 30px;">
+      <h3 style="text-align: center; color: red;">Thanh toán thất bại</h3>
+    </div>
+</div>

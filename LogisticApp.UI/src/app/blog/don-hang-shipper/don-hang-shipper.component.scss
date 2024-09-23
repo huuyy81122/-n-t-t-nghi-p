@@ -1,0 +1,26 @@
+:host {
+    ::ng-deep .p-timeline.p-timeline-horizontal .p-timeline-event-content {
+        padding: 1rem 0;
+        width: 250px;
+        height: 600px;
+    }
+}
+
+:host {
+    ::ng-deep .p-card .p-card-title {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+}
+
+:host {
+    ::ng-deep .p-card .p-card-body {
+        padding: 1.5rem;
+        height: 80px;
+        text-align: justify;
+    }
+}
+.p-button-success{
+    background-color: green;
+}

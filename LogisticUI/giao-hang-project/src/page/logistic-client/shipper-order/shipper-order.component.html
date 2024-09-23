@@ -1,0 +1,36 @@
+<div class="shipper-orders-container">
+    <h1>Danh sách đơn hàng của bạn</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID đơn hàng</th>
+                <th>Mã vận đơn</th>
+                <th>Ngày giao</th>
+                <th>Người nhận</th>
+                <th>Số điện thoại người nhận</th>
+                <th>Địa chỉ người nhận</th>
+                <th>Trạng thái</th>
+                <th>Cập nhật trạng thái</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of orders">
+                <td>{{ order.id }}</td>
+                <td>{{ order.trackingCode }}</td>
+                <td>{{ order.deliveryDate }}</td>
+                <td>{{ order.receiverName }}</td>
+                <td>{{ order.receiverPhoneNumber }}</td>
+                <td>{{ order.receiverAddress }}</td>
+                <td>{{ order.status }}</td>
+                <td>
+                    <select [(ngModel)]="order.status">
+                        <option value="received">Đã nhận hàng</option>
+                        <option value="delivering">Đang giao</option>
+                        <option value="delivered">Giao thành công</option>
+                    </select>
+                    <button (click)="updateOrderStatus(order)">Cập nhật</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

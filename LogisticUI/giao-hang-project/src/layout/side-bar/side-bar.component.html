@@ -1,0 +1,90 @@
+<aside #mainSidebar class="main-sidebar sidebar-light-primary elevation-4 cus-text"
+    style="overflow: visible !important; position: fixed;">
+    <!-- Brand Logo -->
+    <a [routerLink]="['/admin']" class="brand-link">
+        <img src="assets/img/logo.png" class="brand-image" />
+        <span class="brand-text font-weight-light"> &nbsp; Quản trị</span>
+    </a>
+    <div class="sidebar">
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li id="menu3" class="nav-item menu-open">
+                    <a class="nav-link cus-bg" (click)="menu('menu3')" style="background: #418994; color: white;">
+                        &nbsp;
+                        <p>Người dùng<i class="right fa fa-angle-left"></i> </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a [routerLink]="['/admin/customer']" class="nav-link" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{ exact: true }">
+                                <i class="fa fa-users" aria-hidden="true"></i>
+                                <p>&nbsp;Khách hàng</p>
+                            </a>
+                        </li>
+                       
+                    </ul>
+                </li>
+                <li id="menu2" class="nav-item menu-open">
+                    <a class="nav-link cus-bg" (click)="menu('menu2')" style="background: #418994; color: white;">
+                        &nbsp;
+                        <p>Quản lý<i class="right fa fa-angle-left"></i> </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a [routerLink]="['/admin/order']" class="nav-link" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{ exact: true }">
+                                <i class="fa fa-archive" aria-hidden="true"></i>
+                                <p>&nbsp;Đơn hàng</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="menu1" class="nav-item menu-open">
+                    <a class="nav-link cus-bg" (click)="menu('menu1')" style="background: #418994; color: white;">
+                        &nbsp;
+                        <p>Danh mục<i class="right fa fa-angle-left"></i> </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a [routerLink]="['/admin/transport-type']" class="nav-link" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{ exact: true }">
+                                <i class="fa fa-truck" aria-hidden="true"></i>
+                                <p>&nbsp;Loại hình vận chuyển</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink]="['/admin/service-type']" class="nav-link" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{ exact: true }">
+                                <i class="fa fa-list" aria-hidden="true"></i>
+                                <p>&nbsp;Dịch vụ vận chuyển</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink]="['/admin/price']" class="nav-link" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{ exact: true }">
+                                <i class="fa fa-usd" aria-hidden="true"></i>
+                                <p>&nbsp;Đơn giá</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="menu0" class="nav-item menu-open">
+                    <a class="nav-link cus-bg" (click)="menu('menu0')" style="background: #418994; color: white;">
+                        &nbsp;
+                        <p>Thống kê<i class="right fa fa-angle-left"></i> </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a [routerLink]="['/admin/report']" class="nav-link" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{ exact: true }">
+                                <i class="fa fa-line-chart" aria-hidden="true"></i>
+                                <p>&nbsp;Thống kê doanh thu tháng</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+</aside>

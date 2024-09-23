@@ -1,0 +1,235 @@
+<div>
+    <form [formGroup]="formThongTin">
+        <div style="font-size: 20px; font-weight: 500; color: #1f3080; font-weight: 600;">Thông tin cơ bản</div>
+        <div class="row col-12 mt-4">
+            <div class="col-6 mt-3">
+                <label>Họ và tên</label>
+                <input class="col-12 p-inputtext-sm" id="email1" formControlName="hoTen" type="text" placeholder="Nhập họ tên" pInputText >
+                <small *ngIf="formThongTin.controls.hoTen.invalid && (formThongTin.controls.hoTen.touched || submitted)" class="p-error">Tên đăng nhập là bắt buộc</small>
+            </div>
+            <div class="col-6 mt-3">
+                <label>Giới tính</label>
+                <div class="col-12">
+                    <p-dropdown class="p-inputtext-sm" styleClass="prime-override-max-width" [options]="gioiTinh" formControlName="gioiTinh" optionLabel="gioiTinh" optionValue="idGioiTinh" [showClear]="true" placeholder="Lựa chọn giới tính"></p-dropdown>
+                </div>
+                <small *ngIf="formThongTin.controls.gioiTinh.invalid && (formThongTin.controls.gioiTinh.touched || submitted)" class="p-error">Giới tính là bắt buộc</small>
+            </div>
+            <div class="col-6 mt-3">
+                <label>Ngày sinh</label>
+                <div class="col-12">
+                    <input class="p-inputtext-sm" type="date" styleClass="prime-override-max-width" placeholder="Lựa chọn ngày sinh" formControlName="ngaySinh" [value]="formatDate(formThongTin.value.ngaySinh)" pInputText/>
+                </div>
+                <small *ngIf="formThongTin.controls.ngaySinh.invalid && (formThongTin.controls.ngaySinh.touched || submitted)" class="p-error">Ngày sinh là bắt buộc</small>
+            </div>
+            <div class="col-6 mt-3">
+                <label>Nơi sinh</label>
+                <div class="col-12">
+                    <p-dropdown class="p-inputtext-sm" styleClass="prime-override-max-width" [options]="tinhs" formControlName="noiSinh" optionLabel="tenTinh" optionValue="idTinh" [showClear]="true" placeholder="Lựa chọn tỉnh nơi sinh"></p-dropdown>
+                </div>
+                <small *ngIf="formThongTin.controls.noiSinh.invalid && (formThongTin.controls.noiSinh.touched || submitted)" class="p-error">Nơi sinh là bắt buộc</small>
+            </div>
+            <div class="col-6 mt-3">
+                <label>Quốc tịch</label>
+                <div class="col-12">
+                    <p-dropdown class="p-inputtext-sm" styleClass="prime-override-max-width" [options]="cities" formControlName="quocTich" optionLabel="name" optionValue="idQuocTich" [showClear]="true" placeholder="Lựa chọn quốc tịch"></p-dropdown>
+                </div>
+                <small *ngIf="formThongTin.controls.quocTich.invalid && (formThongTin.controls.quocTich.touched || submitted)" class="p-error">Quốc tịch là bắt buộc</small>
+            </div>
+            <div class="col-6 mt-3">
+                <label>Dân tộc</label>
+                <div class="col-12">
+                    <p-dropdown class="p-inputtext-sm" styleClass="prime-override-max-width" [options]="danTocs" formControlName="danToc" optionLabel="danToc" optionValue="idDanToc" [showClear]="true" placeholder="Lựa chọn dân tộc"></p-dropdown>
+                </div>
+                <small *ngIf="formThongTin.controls.danToc.invalid && (formThongTin.controls.danToc.touched || submitted)" class="p-error">Dân tộc là bắt buộc</small>
+            </div>
+            <div class="col-6 mt-3">
+                <label>Số CMND/CCCD</label>
+                <input class="col-12 p-inputtext-sm" id="disabled-input" formControlName="cmnd" type="text" placeholder="Nhập CMND/CCCD" pInputText >
+                <small *ngIf="formThongTin.controls.cmnd.invalid && (formThongTin.controls.cmnd.touched || submitted)" class="p-error">CMND/CCCD là bắt buộc</small>
+            </div>
+            <div class="col-6 mt-3">
+                <label>Ngày cấp</label>
+                <div class="col-12">
+                    <input class="p-inputtext-sm" styleClass="prime-override-max-width" placeholder="Lựa chọn ngày sinh" formControlName="ngayCap" [value]="formatDate(formThongTin.value.ngayCap)" type="date" pInputText />
+                </div>
+                <small *ngIf="formThongTin.controls.ngayCap.invalid && (formThongTin.controls.ngayCap.touched || submitted)" class="p-error">Ngày cấp là bắt buộc</small>
+            </div>
+            <div class="col-6 mt-3">
+                <label>Nơi cấp</label>
+                <div class="col-12">
+                    <p-dropdown class="p-inputtext-sm" styleClass="prime-override-max-width" [options]="tinhs" formControlName="noiCap" optionLabel="tenTinh" optionValue="idTinh" [showClear]="true" placeholder="Lựa chọn nơi cấp"></p-dropdown>
+                </div>
+                <small *ngIf="formThongTin.controls.noiCap.invalid && (formThongTin.controls.noiCap.touched || submitted)" class="p-error">Nơi cấp là bắt buộc</small>
+            </div>
+            <div class="col-6 mt-3">
+                
+            </div>
+            <div class="col-6 mt-3">
+                <label>Tỉnh/Thành phố</label>
+                <div class="col-12">
+                    <p-dropdown class="p-inputtext-sm" styleClass="prime-override-max-width" [options]="tinhs" formControlName="tinh" optionLabel="tenTinh" optionValue="idTinh" [showClear]="true" placeholder="Lựa chọn dân tộc"></p-dropdown>
+                </div>
+                <small *ngIf="formThongTin.controls.tinh.invalid && (formThongTin.controls.tinh.touched || submitted)" class="p-error">Tỉnh là bắt buộc</small>
+            </div>
+            <div class="col-6 mt-3">
+                <label>Quận/Huyện</label>
+                <div class="col-12">
+                    <p-dropdown class="p-inputtext-sm" styleClass="prime-override-max-width" [options]="huyens" formControlName="huyen" optionLabel="tenHuyen" optionValue="idHuyen" [showClear]="true" placeholder="Lựa chọn dân tộc"></p-dropdown>
+                </div>
+                <small *ngIf="formThongTin.controls.huyen.invalid && (formThongTin.controls.huyen.touched || submitted)" class="p-error">Huyện là bắt buộc</small>
+            </div>
+            <div class="col-6 mt-3">
+                <label>Phường/Xã</label>
+                <div class="col-12">
+                    <p-dropdown class="p-inputtext-sm" styleClass="prime-override-max-width" [options]="xas" formControlName="xa" optionLabel="tenXa" optionValue="idXa" [showClear]="true" placeholder="Lựa chọn dân tộc"></p-dropdown>
+                </div>
+                <small *ngIf="formThongTin.controls.xa.invalid && (formThongTin.controls.xa.touched || submitted)" class="p-error">Xã là bắt buộc</small>
+            </div>
+            <div class="col-6 mt-3">
+                <label>Địa chỉ</label>
+                <input class="col-12 p-inputtext-sm" id="email1" formControlName="diaChiTt" type="text" placeholder="Nhập địa chỉ thường trú" pInputText >
+                <small *ngIf="formThongTin.controls.diaChiTt.invalid && (formThongTin.controls.diaChiTt.touched || submitted)" class="p-error">Địa chỉ thường trú là bắt buộc</small>
+            </div>
+            <div class="col-6 mt-3">
+                <label>Hộ khẩu thường trú trên 18 tháng KV1</label>
+                <p-checkbox formControlName="tt18" [binary]="true" inputId="binary"></p-checkbox>
+            </div>
+            <div class="col-6 mt-3">
+                <label>Hộ khẩu thường trú trên 18 tháng xã đặc biệt khó khăn</label>
+                <p-checkbox formControlName="kk18" [binary]="true" inputId="binary"></p-checkbox>
+            </div>
+            <div class="col-6 mt-3">
+                <label>Số điện thoại</label>
+                <input class="col-12 p-inputtext-sm" id="email1" formControlName="dienThoaiCaNhan" type="text" placeholder="Nhập số điện thoại" pInputText >
+                <small *ngIf="formThongTin.controls.dienThoaiCaNhan.invalid && (formThongTin.controls.dienThoaiCaNhan.touched || submitted)" class="p-error">Số điện thoại là bắt buộc</small>
+            </div>
+            <div class="col-6 mt-3">
+                <label>Email</label>
+                <input class="col-12 p-inputtext-sm" id="email1" formControlName="email" type="text" placeholder="Nhập email" pInputText >
+                <small *ngIf="formThongTin.controls.email.invalid && (formThongTin.controls.email.touched || submitted)" class="p-error">Email là bắt buộc</small>
+            </div>
+            <div class="col-12 mt-3">
+                <label>Địa chỉ báo tin</label>
+                <input class="col-12 p-inputtext-sm" id="email1" formControlName="diaChiBaoTin" type="text" placeholder="Nhập địa chỉ báo tin" pInputText >
+                <small *ngIf="formThongTin.controls.diaChiBaoTin.invalid && (formThongTin.controls.diaChiBaoTin.touched || submitted)" class="p-error">Địa chỉ báo tin là bắt buộc</small>
+            </div>
+            <div class="col-12 mt-3 row">
+                <div class="col-7">
+                    <label>Họ tên bố</label>
+                    <input class="col-12 p-inputtext-sm" id="email1" formControlName="hoTenBo" type="text" placeholder="Nhập họ tên bố" pInputText >
+                    <small *ngIf="formThongTin.controls.hoTenBo.invalid && (formThongTin.controls.hoTenBo.touched || submitted)" class="p-error">Họ tên bố là bắt buộc</small>
+                </div>
+                <div class="col-2">
+                    <label >Năm sinh</label>
+                    <input class="col-12 p-inputtext-sm" formControlName="namSinhBo" type="text" placeholder="Nhập năm sinh" pInputText >
+                    <small *ngIf="formThongTin.controls.namSinhBo.invalid && (formThongTin.controls.namSinhBo.touched || submitted)" class="p-error">Năm sinh bố là bắt buộc</small>
+                </div>
+                <div class="col-3">
+                    <label >Số điện thoại</label>
+                    <input class="col-12 p-inputtext-sm" formControlName="sdtBo" type="text" placeholder="Nhập số điện thoại" pInputText >
+                    <small *ngIf="formThongTin.controls.sdtBo.invalid && (formThongTin.controls.sdtBo.touched || submitted)" class="p-error">Số điện thoại là bắt buộc</small>
+                </div>
+            </div>
+            <div class="col-12 mt-3 row">
+                <div class="col-7">
+                    <label>Họ tên mẹ</label>
+                    <input class="col-12 p-inputtext-sm" id="email1" formControlName="hoTenMe" type="text" placeholder="Nhập họ tên mẹ" pInputText >
+                    <small *ngIf="formThongTin.controls.hoTenMe.invalid && (formThongTin.controls.hoTenMe.touched || submitted)" class="p-error">Tên đăng nhập là bắt buộc</small>
+                </div>
+                <div class="col-2">
+                    <label >Năm sinh</label>
+                    <input class="col-12 p-inputtext-sm" formControlName="namSinhMe" type="text" placeholder="Nhập năm sinh" pInputText >
+                    <small *ngIf="formThongTin.controls.namSinhMe.invalid && (formThongTin.controls.namSinhMe.touched || submitted)" class="p-error">Tên đăng nhập là bắt buộc</small>
+                </div>
+                <div class="col-3">
+                    <label >Số điện thoại</label>
+                    <input class="col-12 p-inputtext-sm" formControlName="sdtMe" type="text" placeholder="Nhập số điện thoại" pInputText >
+                    <small *ngIf="formThongTin.controls.sdtMe.invalid && (formThongTin.controls.sdtMe.touched || submitted)" class="p-error">Tên đăng nhập là bắt buộc</small>
+                </div>
+            </div>
+            <div class="col-6 mt-3">
+                <label>Đối tượng chính sách</label>
+                <div class="col-12">
+                    <p-dropdown class="p-inputtext-sm" styleClass="prime-override-max-width" [options]="doiTuongs" formControlName="doiTuongChinhSach" optionLabel="tenDoiTuong" optionValue="idDoiTuong" [showClear]="true" placeholder="Lựa chọn đối tượng chính sách"></p-dropdown>
+                </div>
+                <small *ngIf="formThongTin.controls.doiTuongChinhSach.invalid && (formThongTin.controls.doiTuongChinhSach.touched || submitted)" class="p-error">Tên đăng nhập là bắt buộc</small>
+            </div>
+            <div class="col-6 mt-3">
+                <label>Khu vực ưu tiên</label>
+                <div class="col-12">
+                    <p-dropdown class="p-inputtext-sm" styleClass="prime-override-max-width" [options]="khuVucs" formControlName="khuVucUuTien" optionLabel="tenKhuVuc" optionValue="idKhuVuc" [showClear]="true" placeholder="Lựa chọn khu vực ưu tiên"></p-dropdown>
+                </div>
+                <small *ngIf="formThongTin.controls.khuVucUuTien.invalid && (formThongTin.controls.khuVucUuTien.touched || submitted)" class="p-error">Tên đăng nhập là bắt buộc</small>
+            </div>
+            <div class="col-6 mt-3">
+                <label>Tỉnh lớp 10</label>
+                <div class="col-12">
+                    <p-dropdown class="p-inputtext-sm" styleClass="prime-override-max-width" [options]="tinhs" formControlName="tinh10" optionLabel="tenTinh" optionValue="idTinh" [showClear]="true" placeholder="Lựa chọn tỉnh THPT lớp 10"></p-dropdown>
+                </div>
+                <small *ngIf="formThongTin.controls.tinh10.invalid && (formThongTin.controls.tinh10.touched || submitted)" class="p-error">Tỉnh là bắt buộc</small>
+            </div>
+            <div class="col-6 mt-3">
+                <label>Trường lớp 10</label>
+                <div class="col-12">
+                    <p-dropdown class="p-inputtext-sm" styleClass="prime-override-max-width" [options]="truongs" formControlName="truong10" optionLabel="tenTruongTHPT" optionValue="idTruongTHPT" [showClear]="true" placeholder="Lựa chọn trường THPT lớp 10"></p-dropdown>
+                </div>
+                <small *ngIf="formThongTin.controls.truong10.invalid && (formThongTin.controls.truong10.touched || submitted)" class="p-error">Trường THPT là bắt buộc</small>
+            </div>
+            <div class="col-6 mt-3">
+                <label>Tỉnh lớp 11</label>
+                <div class="col-12">
+                    <p-dropdown class="p-inputtext-sm" styleClass="prime-override-max-width" [options]="tinhs" formControlName="tinh11" optionLabel="tenTinh" optionValue="idTinh" [showClear]="true" placeholder="Lựa chọn tỉnh THPT lớp 11"></p-dropdown>
+                </div>
+                <small *ngIf="formThongTin.controls.tinh11.invalid && (formThongTin.controls.tinh11.touched || submitted)" class="p-error">Tỉnh là bắt buộc</small>
+            </div>
+            <div class="col-6 mt-3">
+                <label>Trường lớp 11</label>
+                <div class="col-12">
+                    <p-dropdown class="p-inputtext-sm" styleClass="prime-override-max-width" [options]="truongs" formControlName="truong11" optionLabel="tenTruongTHPT" optionValue="idTruongTHPT" [showClear]="true" placeholder="Lựa chọn trường THPT lớp 11"></p-dropdown>
+                </div>
+                <small *ngIf="formThongTin.controls.truong11.invalid && (formThongTin.controls.truong11.touched || submitted)" class="p-error">Trường THPT là bắt buộc</small>
+            </div>
+            <div class="col-6 mt-3">
+                <label>Tỉnh lớp 12</label>
+                <div class="col-12">
+                    <p-dropdown class="p-inputtext-sm" styleClass="prime-override-max-width" [options]="tinhs" formControlName="tinh12" optionLabel="tenTinh" optionValue="idTinh" [showClear]="true" placeholder="Lựa chọn tỉnh THPT lớp 12"></p-dropdown>
+                </div>
+                <small *ngIf="formThongTin.controls.tinh12.invalid && (formThongTin.controls.tinh12.touched || submitted)" class="p-error">Tỉnh là bắt buộc</small>
+            </div>
+            <div class="col-6 mt-3">
+                <label>Trường lớp 12</label>
+                <div class="col-12">
+                    <p-dropdown class="p-inputtext-sm" styleClass="prime-override-max-width" [options]="truongs" formControlName="truong12" optionLabel="tenTruongTHPT" optionValue="idTruongTHPT" [showClear]="true" placeholder="Lựa chọn trường THPT lớp 12"></p-dropdown>
+                </div>
+                <small *ngIf="formThongTin.controls.truong12.invalid && (formThongTin.controls.truong12.touched || submitted)" class="p-error">Trường THPT là bắt buộc</small>
+            </div>
+            <div class="col-6 mt-3">
+                <label>Xếp loại học tập lớp 12</label>
+                <div class="col-12">
+                    <p-dropdown class="p-inputtext-sm" styleClass="prime-override-max-width" [options]="loaiHocTap" formControlName="hocTap12" optionLabel="xepLoaiHocTap"  optionValue="idXepLoaiHocTap" [showClear]="true" placeholder="Lựa chọn xếp loại học tập lớp 12"></p-dropdown>
+                </div>
+                <small *ngIf="formThongTin.controls.hocTap12.invalid && (formThongTin.controls.hocTap12.touched || submitted)" class="p-error">Xếp loại học tập là bắt buộc</small>
+            </div>
+            <div class="col-6 mt-3">
+                <label>Xếp loại hạnh kiểm lớp 12</label>
+                <div class="col-12">
+                    <p-dropdown class="p-inputtext-sm" styleClass="prime-override-max-width" [options]="loaiHanhKiem" formControlName="hanhKiem12" optionLabel="xepLoaiHanhKiem" optionValue="idXepLoaiHanhKiem" [showClear]="true" placeholder="Lựa chọn xếp loại hạnh kiểm lớp 12"></p-dropdown>
+                </div>
+                <small *ngIf="formThongTin.controls.hanhKiem12.invalid && (formThongTin.controls.hanhKiem12.touched || submitted)" class="p-error">Xếp loại hạnh kiểm là bắt buộc</small>
+            </div>
+            <div class="col-6 mt-3">
+                <label>Năm tốt nghiệp</label>
+                <div class="col-12">
+                    <input class="p-inputtext-sm" type="number" styleClass="prime-override-max-width" formControlName="namTotNghiep" view="year" dateFormat="yy" inputId="yearpicker" placeholder="Lựa chọn năm tốt nghiệp" pInputText/>
+                </div>
+                <small *ngIf="formThongTin.controls.namTotNghiep.invalid && (formThongTin.controls.namTotNghiep.touched || submitted)" class="p-error">Tên đăng nhập là bắt buộc</small>
+            </div>
+            <div class="col-6 mt-3">
+                <label>SBD kỳ thi THPT</label>
+                <input class="col-12 p-inputtext-sm" id="email1" formControlName="sbd" type="text" placeholder="Nhập số báo danh" pInputText >
+                <small *ngIf="formThongTin.controls.sbd.invalid && (formThongTin.controls.sbd.touched || submitted)" class="p-error">Tên đăng nhập là bắt buộc</small>
+            </div>
+        </div>
+        <!-- <button type="submit" pButton pRipple class="p-button-success">Đăng nhập</button> -->
+    </form>
+</div>

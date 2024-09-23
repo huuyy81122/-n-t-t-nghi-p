@@ -1,0 +1,82 @@
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+<div class="card">
+    <p-table
+        #dt2
+        [value]="data"
+        dataKey="id"
+        [rows]="10"
+        [paginator]="true"
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[10, 25, 50]"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [globalFilterFields]="['idHe', 'idPhuongThucXetTuyen']"
+        [tableStyle]="{ 'min-width': '75rem' }"
+        >
+        <ng-template pTemplate="caption">
+            <div style="justify-content: space-between;" class="flex">
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt2.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width:5%">STT</th>
+                <th style="width:5%">Mã đơn hàng</th>
+                <th style="width:10%">Tên khách hàng</th>
+                <th style="width:7%">Hình thức </th>
+                <th style="width:7%">Khối lượng </th>
+                <th style="width:5%">Dịch vụ</th>
+                <th style="width:17%">Địa chỉ nhận</th>
+                <th style="width:17%">Địa chỉ giao</th>
+                <th style="width:7%">Ngày tạo đơn</th>
+                <th style="width:6%">Giá đơn hàng</th>
+                <th style="width:11%">Trạng thái</th>
+            </tr>
+           
+        </ng-template>
+        <ng-template pTemplate="body" let-rowIndex="rowIndex" let-data>
+            <tr>
+                <td>
+                    {{ rowIndex + 1 }}
+                </td>
+                <td>
+                    {{ data.shippingCode }}
+                </td>
+                <td>
+                    <span class="ml-1 vertical-align-middle">{{ data.tenKhachHang }}</span>
+                </td>
+                <td>
+                    <span class="ml-1 vertical-align-middle">{{ data.hinhThuc }}</span>
+                </td>
+                <td>
+                    <span class="ml-1 vertical-align-middle">{{ data.khoiLuong }}</span>
+                </td>
+                <td>
+                    <span class="ml-1 vertical-align-middle">{{ data.dichVu }}</span>
+                </td>
+                <td>
+                    <span class="ml-1 vertical-align-middle">{{ data.diaChiNhan }}</span>
+                </td>
+                <td>
+                    <span class="ml-1 vertical-align-middle">{{ data.diaChiGiaoHang }}</span>
+                </td>
+                <td>
+                    <span class="ml-1 vertical-align-middle">{{ data.createDate | date: 'dd/MM/yyyy' }}</span>
+                </td>
+                <td>
+                    <span class="ml-1 vertical-align-middle">{{ data.priceValue | number }}đ</span>
+                </td>
+                <td>
+                    {{data.trangThai}}
+                </td>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="5">Không có dữ liệu.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

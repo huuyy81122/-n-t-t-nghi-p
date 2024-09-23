@@ -1,0 +1,33 @@
+<!-- bang-gia.component.html -->
+<div style="text-align: center; margin: 20px;">
+    <h2>Giá cả dịch vụ</h2>
+    <div class="table-container" style="margin: 40px;">
+      <p-table
+        [value]="prices"
+        [paginator]="true"
+        [rows]="5"
+        [tableStyle]="{ 'min-width': '30rem' }"
+        [rowsPerPageOptions]="[10, 20, 30]"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width:20%">ID Giá</th>
+            <th style="width:20%">Loại hình vận chuyển</th>
+            <th style="width:20%">Loại dịch vụ</th>
+            <th style="width:20%">Loại trọng lượng</th>
+            <th style="width:20%">Giá trị</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-price>
+          <tr>
+            <td>{{ price.priceId }}</td>
+            <td>{{ price.transportTypeName }}</td>
+            <td>{{ price.serviceTypeName }}</td>
+            <td>{{ price.weightNumber }}</td>
+            <td>{{ price.priceValue | number }}đ</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+  

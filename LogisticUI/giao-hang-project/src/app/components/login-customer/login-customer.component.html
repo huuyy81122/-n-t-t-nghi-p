@@ -1,0 +1,40 @@
+<div class="container center" style="width: 500px; padding: 50px; height: 60vh; background-color: gainsboro;" >
+    <section class="content-header" style="padding: 0.5% !important">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-md-12">
+                    <form>
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                          <input type="email" id="form2Example1" class="form-control" />
+                          <label class="form-label" for="form2Example1">Email</label>
+                        </div>
+                      
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                          <input type="password" id="form2Example2" class="form-control" />
+                          <label class="form-label" for="form2Example2">Mật khẩu</label>
+                        </div>
+                      
+                        <!-- 2 column grid layout for inline styling -->
+                        <div class="row mb-4">
+                          <div class="col">
+                            <!-- Simple link -->
+                            <a href="#!">Quên mật khẩu?</a>
+                          </div>
+                        </div>
+                      
+                        <!-- Submit button -->
+                        <button type="button" (click)="this.Login()" class="btn btn-primary btn-block mb-4">Đăng nhập</button>
+                      
+                        <!-- Register buttons -->
+                        <div class="text-center">
+                          <p>Chưa có tài khoản <a [routerLink]="['/register-customer']"> Đăng ký tại đây</a></p>
+                        </div>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </section>
+   
+</div>

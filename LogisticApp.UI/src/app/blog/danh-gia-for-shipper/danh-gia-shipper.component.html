@@ -1,0 +1,29 @@
+<p-toast></p-toast>
+<div style="width: 100%;">
+  <h4 style="text-align: center; margin: 20px 0px;">Chi tiết đánh giá của bạn</h4>
+</div>
+<div style="display: flex; flex-direction: row;">
+    
+    <div style="width: 50%; display: flex;justify-content: center; align-items: center; flex-direction: column;">
+      <p-avatar 
+      icon="pi pi-user" 
+      styleClass="mr-2" 
+      size="xlarge" 
+      shape="circle" />
+      <p style="margin-top: 10px;">Lượt đánh giá: {{sum}}</p>
+      <p style="margin-top: 10px;">Trung bình điểm đánh giá: {{trungBinhDiem}}</p>
+      <p style="margin-top: 10px;">Đánh giá của bạn: </p>
+      <div style="width: 80%; height: 100%;">
+        <p-scrollPanel [style]="{ width: '100%', height: '100%' }">
+          <div *ngFor="let item of danhSachs" style="border-left: 5px green solid; padding: 15px; text-align: justify; width: 100%;" class="card">
+              {{item}}
+          </div>
+        </p-scrollPanel>
+      </div>
+    </div>
+    <div style="width: 50%; display: flex; justify-content: center;">
+      <div style="height: 50%; width: 50%;">
+        <p-chart type="doughnut" [data]="data" [options]="options" />
+      </div>
+    </div>
+</div>

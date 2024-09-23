@@ -1,0 +1,32 @@
+
+
+:host {
+    ::ng-deep .p-button.p-fileupload-choose {
+        position: relative;
+        overflow: hidden;
+        background-color: #1f3080;
+        border: 0;
+    }
+}
+
+:host {
+    ::ng-deep .p-fileupload .p-fileupload-buttonbar .p-button {
+        margin-right: .5rem;
+        background: #1f3080;
+        border: 0;
+    }
+}
+:host {
+    ::ng-deep .p-datatable .p-datatable-thead>tr>th {
+        background-color: #1f3080;
+        color: #fff;
+        font-size: 14px;
+    }
+}
+:host {
+    ::ng-deep .p-fileupload .p-fileupload-row>div {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+}

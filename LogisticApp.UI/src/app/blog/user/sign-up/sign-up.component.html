@@ -1,0 +1,78 @@
+<p-toast></p-toast>
+<div class="user-register-container container" [@fadeIn]>
+    <div class="card">
+        <div class="card-header">
+            <h5 style="color: #fff;">{{panelTitle}}</h5>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="userForm" role="form" novalidate>
+                <div class="row mb-3">
+                    <label class="col-md-3 col-form-label d-flex justify-content-end  pe-3">Họ và tên</label>
+                    <div class="col-md-9">
+                        <input pInputText required formControlName="hoVaTen" type="hoVaTen" class="form-control"
+                            [ngClass]="{'is-invalid': formErrors.hoVaTen }"
+                            placeholder="Nhập họ và tên">
+                        <div *ngIf="formErrors.hoVaTen" class="text-danger">
+                            {{ formErrors.hoVaTen }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-md-3 col-form-label d-flex justify-content-end  pe-3">Email</label>
+                    <div class="col-md-9">
+                        <input pInputText formControlName="email" type="email" class="form-control"
+                            [ngClass]="{'is-invalid': formErrors.email }"
+                            placeholder="Nhập địa chỉ email">
+                        <div *ngIf="formErrors.email" class="text-danger">
+                            {{ formErrors.email }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-md-3 col-form-label d-flex justify-content-end  pe-3">Số điện thoại</label>
+                    <div class="col-md-9">
+                        <input pInputText formControlName="sdt" type="sdt" class="form-control"
+                            [ngClass]="{'is-invalid': formErrors.sdt }"
+                            placeholder="Nhập số điện thoại">
+                        <div *ngIf="formErrors.sdt" class="text-danger">
+                            {{ formErrors.sdt }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-md-3 col-form-label d-flex justify-content-end  pe-3">Mật khẩu</label>
+                    <div class="col-md-9">
+                        <input pInputText formControlName="password" validateEqual="confirmPassword" reverse=true type="password"
+                            class="form-control" [ngClass]="{'is-invalid': formErrors.password }"
+                            placeholder="Nhập mật khẩu">
+                        <div *ngIf="formErrors.password" class="text-danger">
+                            {{ formErrors.password }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-md-3 col-form-label d-flex justify-content-end  pe-3">Nhập lại mật khẩu</label>
+                    <div class="col-md-9">
+                        <input pInputText formControlName="confirmPassword" validateEqual="password" type="password"
+                            class="form-control" [ngClass]="{'is-invalid': formErrors.confirmPassword }"
+                            placeholder="Nhập lại mật khẩu">
+                        <div *ngIf="formErrors.confirmPassword" class="text-danger">
+                            {{ formErrors.confirmPassword }}
+                        </div>
+                    </div>
+                </div>
+                <!-- Mock 环境下不显示验证码，也不提交数据。-->
+
+                <div *ngIf="formErrors.formError" class="offset-md-3 col-md-9 alert alert-danger">
+                    {{ formErrors.formError }}</div>
+                <div class="row mb-3">
+                    <div class="offset-md-3 col-md-9">
+                        <button style="background-color: #1f3080; border: #1f3080;" type="submit" class="btn btn-primary btn-margin-1rem" (click)="doSignUp()">Đăng ký</button>
+                        <button routerLink="/login" style="background-color: #fff; border: solid 1px #1f3080; color: #1f3080;" type="submit" class="btn btn-primary btn-margin-1rem">Bạn đã có tài khoản ?</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <block-spinner></block-spinner>
+</div>

@@ -1,0 +1,25 @@
+<div>
+  <div style="font-size: 20px; font-weight: 500; color: #1f3080; margin-bottom: 30px; font-weight: 600;">Giấy tờ</div>
+  <p-table [value]="dataGiayTo" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Mã giấy tờ</th>
+            <th>Tên giấy tờ</th>
+            <th>Thao tác</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-data>
+        <tr>
+            <td style="font-size: 14px;">
+              {{ data.maGiayTo }}
+            </td>
+            <td>
+              {{ data.tenGiayTo }}
+            </td>
+            <td>
+              <p-fileUpload name="myfile[]" url="https://www.primefaces.org/cdn/api/upload.php" [multiple]="true" accept="image/*" maxFileSize="1000000"></p-fileUpload>
+            </td>
+          </tr>
+    </ng-template>
+</p-table>
+</div>

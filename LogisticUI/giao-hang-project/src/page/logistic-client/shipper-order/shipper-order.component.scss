@@ -1,0 +1,50 @@
+.shipper-orders-container {
+    margin: 20px;
+}
+
+.shipper-orders-container h1 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.shipper-orders-container table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+.shipper-orders-container table th, .shipper-orders-container table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.shipper-orders-container table th {
+    background-color: #f2f2f2;
+}
+
+.shipper-orders-container table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.shipper-orders-container table tbody tr:hover {
+    background-color: #e2f3ff;
+}
+
+.shipper-orders-container table select {
+    padding: 6px 10px;
+    font-size: 14px;
+}
+
+.shipper-orders-container table button {
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.shipper-orders-container table button:hover {
+    background-color: #45a049;
+}

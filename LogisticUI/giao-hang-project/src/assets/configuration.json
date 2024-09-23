@@ -1,0 +1,6 @@
+{
+    "production": false,
+    "dev": true,
+    "API": "https://localhost:7018/api/", 
+    "API2": "https://localhost:44383/api2/"
+}

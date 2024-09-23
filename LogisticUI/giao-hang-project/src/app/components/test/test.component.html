@@ -1,0 +1,53 @@
+<section class="content-header" style="padding:0.5%  !important">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-md-6">
+                <app-bread-crumb [breadCrumbs]="breadCrumbs"></app-bread-crumb>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content cus-body">
+    <div class="card">
+        <div class="card-body">
+            <div class="tab-content">
+                <div class="active tab-pane">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <div class="container">
+                                </div>
+                                <nz-table #basicTable [nzData]="dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th class="fw-b">Id</th>
+                                            <th class="fw-b">Title</th>
+                                            <th class="fw-b">Author</th>
+                                            <th class="fw-b">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data of basicTable.data">
+                                            <td>{{data.id}}</td>
+                                            <td>{{data.title}}</td>
+                                            <td>{{data.author}}</td>
+                                            <td>
+                                                <a><span class="table-icon" nz-icon nzType="edit"
+                                                        nzTheme="outline"></span></a>
+                                                <nz-divider nzType="vertical"></nz-divider>
+                                                <a><span class="table-icon" nz-icon nzType="delete"
+                                                         nzTheme="outline"></span></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </nz-table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

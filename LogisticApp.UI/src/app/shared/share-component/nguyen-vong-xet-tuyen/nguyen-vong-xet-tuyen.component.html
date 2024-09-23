@@ -1,0 +1,27 @@
+<div>
+  <div style="font-size: 20px; font-weight: 500; color: #1f3080; margin-bottom: 30px; font-weight: 600;">Nguyện vọng xét tuyển</div>
+  <div style="background-color: #1f3080; padding: 10px; color: #fff; margin-left: 2px;" class="row">
+      <div style="font-weight: 600;" class="col-2">Thứ tự</div>
+      <div style="font-weight: 600;" class="col-4">Ngành xét tuyển</div>
+      <div style="font-weight: 600;" class="col-4">Tổ hợp môn xét tuyển</div>
+      <div style="font-weight: 600;" class="col-2">Thao tác</div>
+  </div>
+  <div *ngFor="let item of dataNguyenVong; index as i;">
+    <div class="row mt-3">
+      <div class="col-2">
+        <p-dropdown class="p-inputtext-sm" styleClass="prime-override-max-width" [options]="soThuTus" [(ngModel)]="item.thuTuXet" optionLabel="index" optionValue="value" placeholder="Lựa chọn thứ tự"></p-dropdown>
+      </div>
+      <div class="col-4">
+        <p-dropdown class="p-inputtext-sm" styleClass="prime-override-max-width" [options]="nganhs" [(ngModel)]="item.idNganh" (ngModelChange)="changeDataToHop($event, i)" optionLabel="tenNganh" optionValue="idNganh" placeholder="Lựa chọn ngành xét tuyển"></p-dropdown>
+      </div>
+      <div class="col-4">
+        <p-dropdown class="p-inputtext-sm" styleClass="prime-override-max-width" [options]="toHopSelectItem[i]" [(ngModel)]="item.idToHopXetTuyen" optionLabel="tenToHop" optionValue="idToHopXetTuyen" placeholder="Lựa chọn tổ hợp xét tuyển"></p-dropdown>
+      </div>
+      <div class="col-2">
+        <button style="background-color: red; color: #fff; padding: 6px; text-align: center; width: 60px; border-radius: 100px; border: 0;" (click)="onRemoveNguyenVong(i)">Xóa</button>
+      </div>
+    </div>
+  </div>
+  <button style="background-color: #1f3080; color: #fff; padding: 6px; text-align: center; width: 150px; border-radius: 100px;border: 0; margin-top: 10px;" (click)="onAddNguyenVong()">Thêm nguyện vọng</button>
+  <!-- <button (click)="onClick()">test</button> -->
+</div>

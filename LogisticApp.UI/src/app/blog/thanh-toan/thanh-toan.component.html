@@ -1,0 +1,67 @@
+<div style="background-color: #1f3080;">
+  <h3 style="color: #fff; font-weight: 500; text-align: center; padding-top: 20px;">Thanh toán đơn hàng</h3>
+  <div style="padding-top: 20px; padding-bottom: 30px; display: flex; justify-content: center;">
+    <div style="background-color: #fff; border-radius: 7px; width: 85%;">
+      <div style="display: flex; ">
+        <div style="width: 50%; display: flex; justify-content: center; flex-direction: column; padding: 40px; ">
+          <h4 style="text-align: center; font-weight: 500;">Thông tin thí sinh</h4>
+          <div style="display: flex; justify-content: center; ">
+            <div class="col-12 mt-3">
+              <label class="col-3">Họ và tên:</label>
+              <input class="col-9 p-inputtext-md" disabled id="email1" [value]="user.name" type="text" pInputText >
+            </div>
+          </div>
+          <div style="display: flex; justify-content: center; ">
+            <div class="col-12 mt-3">
+              <label class="col-3">CMND/CCCD:</label>
+              <input class="col-9 p-inputtext-md" id="email1" [value]="user.cccd" disabled type="text" placeholder="Nhập họ tên" pInputText >
+            </div>
+          </div><div style="display: flex; justify-content: center; ">
+            <div class="col-12 mt-3">
+              <label class="col-3">Email:</label>
+              <input class="col-9 p-inputtext-md" id="email1" [value]="user.email" disabled type="text" placeholder="Nhập họ tên" pInputText >
+            </div>
+          </div><div style="display: flex; justify-content: center; ">
+            <div class="col-12 mt-3">
+              <label class="col-3">Số điện thoại:</label>
+              <input class="col-9 p-inputtext-md" id="email1" [value]="user.sdt" disabled type="text" placeholder="Nhập họ tên" pInputText >
+            </div>
+          </div>
+        </div>
+        <div style="width: 50%; display: flex; justify-content: center; flex-direction: column; padding: 40px; ">
+          <h4 style="text-align: center; font-weight: 500;">Thông tin thanh toán</h4>
+          <div style="display: flex; justify-content: center; ">
+            <div class="col-12 mt-3">
+              <label class="col-3">Mã hồ sơ xét tuyển:</label>
+              <input class="col-9 p-inputtext-md" disabled [value]="'HSTS'+user?.ma_ho_so.toString().padStart(6, '0')" type="text" pInputText >
+            </div>
+          </div>
+          <div style="display: flex; justify-content: center; ">
+            <div class="col-12 mt-3">
+              <label class="col-3">Tên đơn vị thụ hưởng:</label>
+              <input class="col-9 p-inputtext-md" disabled value="TRƯỜNG ĐẠI HỌC XÂY DỰNG HÀ NỘI" type="text" pInputText >
+            </div>
+          </div>
+          <div style="display: flex; justify-content: center; ">
+            <div class="col-12 mt-3">
+              <label class="col-3">Số tiền thanh toán:</label>
+              <input class="col-9 p-inputtext-md" [value]="payInfo?.soTienThanhToan.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'})" disabled type="text" pInputText >
+            </div>
+          </div><div style="display: flex; justify-content: center; ">
+            <div class="col-12 mt-3">
+              <label class="col-3">Nội dung thanh toán:</label>
+              <input class="col-9 p-inputtext-md" [value]="payInfo?.noiDungThanhToan" disabled type="text" pInputText >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: center;">
+        <button (click)="handlePay(payInfo?.soTienThanhToan, payInfo?.noiDungThanhToan)" style="background-color: #1f3080; padding: 10px 10px; color: #fff; border-radius: 10px; border: 0; font-size: 13px; margin-bottom: 20px;">Xác nhận thông tin thanh toán</button>
+      </div>
+      <!-- <ng-template pTemplate="footer">
+          <p-button label="Save" icon="pi pi-check"></p-button>
+          <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
+      </ng-template> -->
+    </div>
+  </div>
+</div>

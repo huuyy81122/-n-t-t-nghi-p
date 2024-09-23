@@ -1,0 +1,19 @@
+// .label{
+//     margin-left: 6px;
+//     width: 10%;
+// }
+// .input{
+//     width: 40%;
+// }
+:host {
+    ::ng-deep .prime-override-max-width {
+        width: 100%;
+    }
+}
+:host {
+    ::ng-deep .p-inputtext.p-inputtext-sm {
+        font-size: 0.875rem;
+        padding: 0.65625rem 0.65625rem;
+        width: 100%;
+    }
+}

@@ -1,0 +1,41 @@
+:host {
+    ::ng-deep .p-timeline.p-timeline-horizontal .p-timeline-event-content {
+        padding: 1rem 0;
+        width: 250px;
+        height: 600px;
+    }
+}
+
+:host {
+    ::ng-deep .p-card .p-card-title {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+}
+
+:host {
+    ::ng-deep .p-card .p-card-body {
+        padding: 1.5rem;
+        height: 350px;
+        text-align: justify;
+    }
+}
+body{margin-top:20px;
+    background-color:#eee;
+    }
+    
+    .card {
+        box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+    }
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 0 solid rgba(0,0,0,.125);
+        border-radius: 1rem;
+    }

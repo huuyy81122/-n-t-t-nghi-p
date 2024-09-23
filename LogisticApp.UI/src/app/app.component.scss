@@ -1,0 +1,122 @@
+$navbarBgColor: #04091e;
+$navbarBgHoverColor: #303d47;
+
+.main-nav {
+    background: $navbarBgColor;
+    height: 50px;
+    min-height: 50px;
+    padding: 0;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.24);
+
+    .navbar-toggle {
+        .icon-bar {
+            background-color: #fff;
+        }
+    }
+
+    .navbar-collapse {
+        background: $navbarBgColor;
+
+        li>a {
+            color: #fff;
+        }
+
+        li.active,
+        li>a:hover,
+        li>a:focus,
+        .open>a,
+        .open>a:hover,
+        .open>a:focus {
+            color: #fff;
+            background-color: $navbarBgHoverColor;
+        }
+    }
+
+    .navbar-brand-my {
+        color: #fff;
+        line-height: 50px;
+        padding: 0;
+        margin: 0;
+        text-align: left;
+
+        img {
+            width: 50px;
+        }
+    }
+}
+
+.main-container {
+    min-height: 1024px;
+    padding-bottom: 30px;
+}
+
+.footer {
+    padding: 30px 0px;
+    background: $navbarBgColor;
+    color: #fff;
+
+    a {
+        color: #fff;
+    }
+}
+nav {
+    height: 75px;
+  }
+  
+  img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .nav {
+    list-style: none;
+    width: 40%;
+  }
+  
+  nav a {
+    font-size: 15px;
+    color: #13adcd;
+    text-decoration: none;
+  }
+  
+  nav a.active {
+    color: chocolate;
+  }
+  
+  nav a:hover {
+    color: chocolate;
+  }
+  
+  .mainhere {
+    width: 100%;
+  }
+  .loader {
+    position:fixed;
+    width: 100%;
+    z-index: 99;
+  }
+  a:hover {
+    cursor: pointer; /* Hoặc bất kỳ giá trị con trỏ nào khác mà bạn muốn, như 'pointer', 'default', 'grab', 'text', v.v. */
+  }
+  :host ::ng-deep {
+    .p-menubar {
+      display: flex;
+      background: #fff;
+      align-items: center;
+      padding-left: 20px;
+      padding-right: 20px;
+  }}
+  :host ::ng-deep {
+    .p-carousel-prev, .p-carousel-next {
+        width: 2rem;
+        height: 2rem;
+        color: #6c757d;
+        border: 0 none;
+        background: transparent;
+        border-radius: 50%;
+        transition: box-shadow .15s;
+        margin: 0.5rem;
+        display: none;
+    }
+  }
+  

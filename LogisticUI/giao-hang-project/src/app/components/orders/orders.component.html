@@ -1,0 +1,253 @@
+<section class="content-header" style="padding: 0.5% !important">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-md-6">
+                <app-bread-crumb [breadCrumbs]="breadCrumbs"></app-bread-crumb>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="content cus-body" style="font-family: sans-serif; font-size: 14px">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <nz-form-label>Loại hình vận chuyển</nz-form-label>
+                    <br />
+                    <nz-select [(ngModel)]="Transport_type_id_ft" nzAllowClear style="width: 100%"
+                        (ngModelChange)="this.getList()">
+                        <nz-option [nzValue]="0" nzLabel="Tất cả"></nz-option>
+                        <nz-option *ngFor="let item of this.listTransport" [nzValue]="item.Transport_type_id"
+                            [nzLabel]="item.Transport_type_name"></nz-option>
+                    </nz-select>
+                </div>
+                <div class="col-md-4">
+                    <nz-form-label>Dịch vụ vận chuyển</nz-form-label>
+                    <br />
+                    <nz-select [(ngModel)]="Service_type_id_ft" nzAllowClear style="width: 100%"
+                        (ngModelChange)="this.getList()">
+                        <nz-option [nzValue]="0" nzLabel="Tất cả"></nz-option>
+                        <nz-option *ngFor="let item of this.listService" [nzValue]="item.Service_type_id"
+                            [nzLabel]="item.Service_type_name"></nz-option>
+                    </nz-select>
+                </div>
+                <div class="col-md-4">
+                    <nz-form-label>Trạng thái</nz-form-label>
+                    <br />
+                    <nz-select [(ngModel)]="Status_ft" nzAllowClear style="width: 100%"
+                        (ngModelChange)="this.getList()">
+                        <nz-option [nzValue]="0" nzLabel="Tất cả"></nz-option>
+                        <nz-option [nzValue]="1" nzLabel="Chưa duyệt"></nz-option>
+                        <nz-option [nzValue]="2" nzLabel="Đang giao"></nz-option>
+                        <nz-option [nzValue]="3" nzLabel="Đang hoàn thành"></nz-option>
+                        <nz-option [nzValue]="4" nzLabel="Đã hủy"></nz-option>
+                    </nz-select>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content cus-body">
+    <div class="card">
+        <div class="card-body">
+            <div class="tab-content">
+                <div class="active tab-pane">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <nz-table #basicTable [nzData]="listOfDisplayData">
+                                    <thead>
+                                        <tr>
+                                            <th class="fw-b">ID</th>
+                                            <th class="fw-b">Khách hàng</th>
+                                            <th class="fw-b">Email</th>
+                                            <th class="fw-b">Trạng thái</th>
+                                            <th class="fw-b">Loại hình vận chuyển</th>
+                                            <th class="fw-b">Dịch vụ vận chuyển</th>
+                                            <th class="fw-b">KM tối thiểu</th>
+                                            <th class="fw-b">Giá (VNĐ)</th>
+                                            <th class="fw-b">Tổng tiền (VNĐ)</th>
+                                            <th style="white-space: nowrap" class="fw-b">Tác vụ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data of basicTable.data">
+                                            <td>{{ data.Order_id }}</td>
+                                            <td>{{ data.Full_name }}</td>
+                                            <td>{{ data.Email }}</td>
+                                            <td>{{ data.Status_name }}</td>
+                                            <td>{{ data.Transport_type_name }}</td>
+                                            <td>{{ data.Service_type_name }}</td>
+                                            <td>{{ data.Order_km}}</td>
+                                            <td>{{ data.Price | number}}</td>
+                                            <td>{{ data.Total | number}}</td>
+                                            <td style="white-space: nowrap">
+                                                <a><span class="table-icon" nz-icon nzType="edit"
+                                                        (click)="openAddModal(data)"
+                                                        nzTheme="outline"></span></a><nz-divider
+                                                    nzType="vertical"></nz-divider>
+                                                <a><span class="table-icon" nz-icon nzType="delete"
+                                                        (click)="openDeleteModal(data.Order_id)"
+                                                        nzTheme="outline"></span></a>
+                                                <nz-divider nzType="vertical"></nz-divider>
+                                                <a><span class="table-icon" nz-icon nzType="file"
+                                                        (click)="openFileModal(data.Order_id)"
+                                                        nzTheme="outline"></span></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </nz-table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+            <input type="text" nz-input placeholder="Nhập họ tên" [(ngModel)]="searchValue" />
+            <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Lọc</button>
+            <button nz-button nzSize="small" (click)="reset()">Bỏ lọc</button>
+        </div>
+    </div>
+</nz-dropdown-menu>
+
+<nz-modal [(nzVisible)]="isDisplayAddModal" [nzTitle]="titleModal" nzCancelText="Đóng" nzOkText="Xác nhận"
+    (nzOnCancel)="handleCancel()" (nzOnOk)="save()" [nzWidth]="1300">
+    <ng-container *nzModalContent>
+        <form nz-form nzLayout="vertical" [formGroup]="addForm">
+            <div class="col-md-12">
+                <div class="row">
+                    <nz-form-item class="col-md-6">
+                        <nz-form-label nzRequired>Khách hàng</nz-form-label>
+                        <nz-form-control nzErrorTip="Không được bỏ trống !">
+                            <input type="text" formControlName="Full_name" nz-input placeholder="Nhập nội dung" />
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item class="col-md-6">
+                        <nz-form-label nzRequired>Email</nz-form-label>
+                        <nz-form-control nzErrorTip="Không được bỏ trống !">
+                            <input type="text" formControlName="Email" nz-input placeholder="Nhập nội dung" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div class="row">
+                    <nz-form-item class="col-md-4">
+                        <nz-form-label nzRequired>Loại hình vận chuyển</nz-form-label>
+                        <nz-form-control nzErrorTip="Không được bỏ trống !">
+                            <nz-select formControlName="Transport_type_id" nzAllowClear>
+                                <nz-option *ngFor="
+                            let item of this.listTransport;
+                            index as i;
+                          " [nzValue]="item.Transport_type_id" [nzLabel]="item.Transport_type_name"></nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item class="col-md-4">
+                        <nz-form-label nzRequired>Dịch vụ vận chuyển</nz-form-label>
+                        <nz-form-control nzErrorTip="Không được bỏ trống !">
+                            <nz-select formControlName="Service_type_id" nzAllowClear>
+                                <nz-option *ngFor="
+                            let item of this.listService;
+                            index as i;
+                          " [nzValue]="item.Service_type_id" [nzLabel]="item.Service_type_name"></nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item class="col-md-4">
+                        <nz-form-label nzRequired>Trạng thái</nz-form-label>
+                        <nz-form-control nzErrorTip="Không được bỏ trống !">
+                            <nz-select formControlName="Status" nzAllowClear>
+                                <nz-option [nzValue]="1" [nzLabel]="'Chưa duyệt'"></nz-option>
+                                <nz-option [nzValue]="2" [nzLabel]="'Đang giao'"></nz-option>
+                                <nz-option [nzValue]="3" [nzLabel]="'Đã hoàn thành'"></nz-option>
+                                <nz-option [nzValue]="4" [nzLabel]="'Đã hủy'"></nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div class="row">
+                    <nz-form-item class="col-md-6">
+                        <nz-form-label nzRequired>Ghi chú của khách hàng</nz-form-label>
+                        <nz-form-control nzErrorTip="Không được bỏ trống !">
+                            <textarea nz-input formControlName="Customer_description"></textarea>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item class="col-md-6">
+                        <nz-form-label nzRequired>Ghi chú của quản trị viên</nz-form-label>
+                        <nz-form-control nzErrorTip="Không được bỏ trống !">
+                            <textarea nz-input placeholder="Nhập nội dung"
+                                formControlName="Admin_description"></textarea>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div class="row">
+                    <nz-form-item class="col-md-6">
+                        <nz-form-label nzRequired>Địa chỉ nhận hàng</nz-form-label>
+                        <nz-form-control nzErrorTip="Không được bỏ trống !">
+                            <textarea nz-input formControlName="Order_from"></textarea>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item class="col-md-6">
+                        <nz-form-label nzRequired>Địa chỉ trả hàng</nz-form-label>
+                        <nz-form-control nzErrorTip="Không được bỏ trống !">
+                            <textarea nz-input placeholder="Nhập nội dung" formControlName="Order_to"></textarea>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div class="row">
+                    <nz-form-item class="col-md-12">
+                        <nz-form-label nzRequired>Nội dung đơn hàng</nz-form-label>
+                        <nz-form-control nzErrorTip="Không được bỏ trống !">
+                            <textarea nz-input formControlName="Order_content"></textarea>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div class="row">
+                    <nz-form-item class="col-md-4">
+                        <nz-form-label nzRequired>Số KM</nz-form-label>
+                        <nz-form-control nzErrorTip="Không được bỏ trống !">
+                            <input type="number" formControlName="Order_km" nz-input placeholder="Nhập nội dung" />
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item class="col-md-4">
+                        <nz-form-label nzRequired>Đơn giá</nz-form-label> <button
+                            (click)="(this.getPrice())" nz-button nzType="primary"
+                            style="    width: 110px;position: absolute;left: 100px;top: -5px;">Cập nhật giá</button>
+                        <nz-form-control nzErrorTip="Không được bỏ trống !">
+                            <input type="number" formControlName="Price" nz-input placeholder="Nhập nội dung" />
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item class="col-md-4">
+                        <nz-form-label nzRequired>Tổng tiền đơn hàng</nz-form-label>
+                        <nz-form-control nzErrorTip="Không được bỏ trống !">
+                            <input type="number" formControlName="Total" nz-input placeholder="Nhập nội dung" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+            </div>
+        </form>
+    </ng-container>
+</nz-modal>
+
+<nz-modal [(nzVisible)]="isDisplayDelete" nzTitle="Xóa bản ghi" nzCancelText="Đóng" nzOkText="Xác nhận"
+    (nzOnCancel)="handleCancel()" (nzOnOk)="delete()">
+    <ng-container *nzModalContent>
+        <h5 class="text-center">Bạn có chắc muốn xóa bản ghi này ?</h5>
+        <i class="trash-icon fa fa-trash" aria-hidden="true"></i>
+    </ng-container>
+</nz-modal>
+
+<nz-modal [(nzVisible)]="isDisplayFile" nzTitle="Trạng thái đơn hàng" nzCancelText="Đóng" nzOkText="Xác nhận"
+    (nzOnCancel)="handleCancel()" [nzWidth]="1000">
+    <ng-container *nzModalContent>
+        <app-common-status [Order_id]="this.ID" [isAdmin]="true"></app-common-status>
+    </ng-container>
+</nz-modal>

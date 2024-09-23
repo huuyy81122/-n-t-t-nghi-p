@@ -1,0 +1,79 @@
+<div style="display: flex; justify-content: center; flex-direction: column; margin-top: 60px;">
+  <div class="container">
+    <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="invoice-title">
+                            <h5 class="float-end font-size-15">Invoice {{ vnp_BankTranNo }} <span class="badge bg-success font-size-12 ms-2">Paid</span></h5>
+                            <div class="mb-4">
+                               <h5 class="mb-1 text-muted">QUẢN LÝ GIAO HÀNG</h5>
+                            </div>
+                            <!-- <div class="text-muted">
+                                <p class="mb-1">55 Giải phóng, phường Đồng Tâm, Hai Bà Trưng, Hà Nội</p>
+                                <p class="mb-1"><i class="uil uil-envelope-alt me-1"></i>tuyensinh.huce.com</p>
+                                <p><i class="uil uil-phone me-1"></i> 012-345-6789</p>
+                            </div> -->
+                        </div>
+    
+                        <hr class="my-4">
+    
+                        <div style="display: flex;" class="row">
+                            <div class="col-6">
+                                <div class="text-muted">
+                                    <h6 class="font-size-16 mb-3" style="font-weight: 600;">Người thanh toán:</h6>
+                                    <h6 class="font-size-15 mb-2">{{hoTen}}</h6>
+                                    <p class="mb-1">Số CMND/CCCD: {{cmnd}}</p>
+                                </div>
+                                <div class="mt-4">
+                                    <h6 class="font-size-15 mb-1" style="font-weight: 600;">Ngày thanh toán:</h6>
+                                    <p>{{currentDate | date}}</p>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                            <div style="display: flex; justify-content: end;" class="col-6">
+                                <div class="text-muted text-sm-end">
+                                    <div>
+                                        <h6 class="font-size-15 mb-1" style="font-weight: 600;">Số hóa đơn:</h6>
+                                        <p>{{ vnp_TxnRef }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                        
+                        <div class="py-2">
+                            <h6 class="font-size-15" style="font-weight: 600;">Chi tiết thanh toán</h6>
+    
+                            <p-table [value]="chiTietHoaDon">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Khoản thu</th>
+                                        <th>Nội dung thanh toán</th>
+                                        <th>Thành tiền</th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-rowIndex="rowIndex" let-product>
+                                    <tr>
+                                        <td>{{ rowIndex + 1 }}</td>
+                                        <td>{{product.khoanThu}}</td>
+                                        <td>{{product.noiDungThanhToan}}</td>
+                                        <td>{{product.soTien | number}} đ</td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                            <div class="d-print-none mt-4">
+                                <div style="display: flex; justify-content: end;">
+                                    <a style="background-color: green; padding: 10px; border-radius: 10px;" href="javascript:window.print()" class="btn btn-success me-1"><i class="pi pi-print" style="color: #fff"></i></a>
+                                    <a style="background-color: red; padding: 10px; border-radius: 10px; margin-left: 5px; text-decoration: none; color: white" href="ke-hoach-tuyen-sinh/quan-ly-hoc-phi" class="btn btn-primary w-md">Quay trở lại</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end col -->
+        </div>
+    </div>
+</div>

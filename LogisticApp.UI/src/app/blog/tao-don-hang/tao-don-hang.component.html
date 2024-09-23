@@ -1,0 +1,177 @@
+<div>
+  <p-toast />
+  <h3 style="color: #9f2b2b; font-weight: 500; text-align: center; padding-top: 20px; font-weight: 600;">Đơn hàng vận chuyển</h3>
+  <p style="text-align: center; color: gray;">MÃ ĐƠN HÀNG: {{maDonHang}}</p>
+  <div style="padding-top: 20px; padding-bottom: 30px; display: flex; justify-content: center;">
+    <div style="background-color: #fff; border-radius: 7px; border: gray solid 1px; width: 85%;">
+      <div style="display: flex; ">
+        <div style="width: 50%; display: flex; justify-content: center; flex-direction: column; padding: 40px; ">
+          <h4 style="text-align: center; font-weight: 500;">Thông tin khách hàng</h4>
+          <div style="display: flex; justify-content: center; ">
+            <div class="col-12 mt-3">
+              <label class="col-3">Họ và tên:</label>
+              <input  [(ngModel)]="user.name" class="col-9 p-inputtext-sm" disabled id="email1" type="text" pInputText >
+            </div>
+          </div>
+          <div style="display: flex; justify-content: center; ">
+            <div class="col-12 mt-3">
+              <label class="col-3">Email:</label>
+              <input  [(ngModel)]="user.email" class="col-9 p-inputtext-sm" id="email1" disabled type="text" placeholder="Nhập họ tên" pInputText >
+            </div>
+          </div><div style="display: flex; justify-content: center; ">
+            <div class="col-12 mt-3">
+              <label class="col-3">Số điện thoại:</label>
+              <input [(ngModel)]="user.sdt" class="col-9 p-inputtext-sm" id="email1" disabled type="text" placeholder="Nhập họ tên" pInputText >
+            </div>
+          </div>
+          <!-- </div><div style="display: flex; justify-content: center; ">
+            <div class="col-12 mt-3">
+              <label class="col-3">Số điện thoại:</label>
+              <input class="col-9 p-inputtext-sm" id="email1" disabled type="text" placeholder="Nhập họ tên" pInputText >
+            </div>
+          </div> -->
+        </div>
+        <div style="width: 50%; display: flex; justify-content: center; flex-direction: column; padding: 40px; ">
+          <h4 style="text-align: center; font-weight: 500;">Thông tin đơn hàng</h4>
+          <div style="display: flex; justify-content: center; ">
+            <div style="width: 100%;" class="col-12 mt-3">
+              <label class="col-3">Loại khối lượng:</label>
+              <p-dropdown
+                class="p-inputtext-sm" styleClass="prime-override-60-width" 
+                  [options]="weight" 
+                  [(ngModel)]="selectedWeight" 
+                  optionLabel="weightName"
+                  placeholder="Lựa chọn khối lượng hàng hóa"
+                  (onChange)="handleGetPrice($event)"
+              ></p-dropdown>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: center; ">
+            <div class="col-12 mt-3">
+              <label class="col-3">Hình thức vận chuyển:</label>
+              <!-- <input [(ngModel)]="hinhThucVanChuyen" class="col-9 p-inputtext-sm" disabled value="TRƯỜNG ĐẠI HỌC XÂY DỰNG HÀ NỘI" type="text" pInputText > -->
+              <p-dropdown 
+              class="p-inputtext-sm" styleClass="prime-override-60-width" 
+              [options]="hinhThucVanChuyen" 
+              [(ngModel)]="selectedTransportType" 
+              optionLabel="transportTypeName"
+              placeholder="Lựa chọn hình thức vận chuyển"
+              (onChange)="handleGetPrice($event)"
+              ></p-dropdown>
+          
+            </div>
+          </div>
+          <div style="display: flex; justify-content: center; ">
+            <div class="col-12 mt-3">
+              <label class="col-3">Dịch vụ vận chuyển:</label>
+              <p-dropdown 
+                class="p-inputtext-sm" styleClass="prime-override-60-width" 
+                  [options]="dichVu" 
+                  [(ngModel)]="selectedServiceType" 
+                  optionLabel="serviceTypeName"
+                  placeholder="Lựa chọn dịch vụ vận chuyển"
+                  (onChange)="handleGetPrice($event)"
+              ></p-dropdown>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="height: 300px; margin: 10px 40px;" id="map" class="map-container"></div>
+      <div style="margin: 20px 40px; display: flex;">
+        <div class="col-5">
+            <label for="origin-input" class="col-3">Địa chỉ gửi hàng:</label>
+            <p-dropdown 
+            class="p-inputtext-sm" styleClass="prime-override-max-width" 
+              [options]="listTinh" 
+              optionLabel="provinceName"
+              placeholder="Lựa chọn tỉnh giao hàng"
+              (onChange)="handleChangeDiaChi($event, 'TINH')"
+          ></p-dropdown>
+          <p-dropdown 
+            class="p-inputtext-sm" styleClass="prime-override-max-width" 
+              [options]="listHuyenFilter" 
+              optionLabel="districtName"
+              placeholder="Lựa chọn huyện giao hàng"
+              (onChange)="handleChangeDiaChi($event, 'HUYEN')"
+          ></p-dropdown>
+          <p-dropdown 
+            class="p-inputtext-sm" styleClass="prime-override-max-width" 
+              [options]="listXaFilter" 
+              optionLabel="communeName"
+              placeholder="Lựa chọn xã giao hàng"
+              (onChange)="handleChangeDiaChi($event, 'XA')"
+          ></p-dropdown>
+        </div>
+        <div style="margin-left: 30px;" class="col-5">
+            <label for="destination-input" class="col-3">Địa chỉ gửi hàng:</label>
+            <p-dropdown 
+            class="p-inputtext-sm" styleClass="prime-override-max-width" 
+              [options]="listTinh" 
+              optionLabel="provinceName"
+              placeholder="Lựa chọn tỉnh nhận hàng"
+              (onChange)="handleChangeDiaChi($event, 'TINHNHAN')"
+          ></p-dropdown>
+          <p-dropdown 
+            class="p-inputtext-sm" styleClass="prime-override-max-width" 
+              [options]="listHuyenNhanFilter" 
+              optionLabel="districtName"
+              placeholder="Lựa chọn huyện nhận hàng"
+              (onChange)="handleChangeDiaChi($event, 'HUYENNHAN')"
+          ></p-dropdown>
+          <p-dropdown 
+            class="p-inputtext-sm" styleClass="prime-override-max-width" 
+              [options]="listXaNhanFilter" 
+              optionLabel="communeName"
+              placeholder="Lựa chọn xã nhận hàng"
+              (onChange)="handleChangeDiaChi($event, 'XANHAN')"
+          ></p-dropdown>
+        </div>
+        <div class="col-2">
+          <button style="border: #9f2b2b solid 1px; margin-top: 80px; margin-left: 15px;" class="btn" (click)="handleKhoangCach()">Xác nhận địa điểm</button>
+        </div>
+      <div >
+        
+      </div>
+    
+      </div>
+      <div style="margin: 20px 40px; display: flex;">
+        <div class="col-5">
+            <label  class="col-3">Tên người nhận:</label>
+            <input [(ngModel)]="nguoiNhan" class="col-9 p-inputtext-sm" id="" type="text" placeholder="Nhập tên người nhận" pInputText >
+        </div>
+        <div style="margin-left: 30px;" class="col-5">
+            <label   class="col-3">SĐT người nhận:</label>
+            <input [(ngModel)]="sdtNguoiNhan" class="col-9 p-inputtext-sm" id="" type="text" placeholder="Nhập SĐT người nhận" pInputText >
+        </div>  
+    </div>
+      <div style="margin: 20px 40px;">
+        <label for="float-input">Ghi chú:</label>
+        <textarea 
+            [(ngModel)]="ghiChu" 
+            id="float-input" 
+            style="width: 100%; margin-top: 8px;"
+            rows="5" 
+            pInputTextarea>
+        </textarea>
+      </div>
+      <div style="margin-left: 40px;">
+        <div style="display: flex; align-items: center;">
+          <h6>Khoảng cách: </h6>
+          <h6 style="margin-left: 5px; font-weight: 600;">{{distanceResult}}</h6>
+        </div>
+        <div style="display: flex; align-items: center;">
+          <h6>Tổng tiền:</h6>
+          <h5 style="margin-left: 5px; font-weight: 600;">{{price * khoangCach / 100 | round | number }}đ</h5>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: center;">
+        <button (click)="handleOrder()" style="background-color: #9f2b2b; padding: 10px 10px; color: #fff; border-radius: 10px; border: 0; font-size: 13px; margin-bottom: 20px;">Tạo đơn hàng</button>
+      </div>
+      <!-- <ng-template pTemplate="footer">
+          <p-button label="Save" icon="pi pi-check"></p-button>
+          <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
+      </ng-template> -->
+    </div>
+  </div>
+</div>
+

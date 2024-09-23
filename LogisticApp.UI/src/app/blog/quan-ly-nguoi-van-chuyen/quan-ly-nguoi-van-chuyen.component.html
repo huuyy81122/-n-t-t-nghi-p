@@ -1,0 +1,54 @@
+<p-toast></p-toast>
+<div style="width: 100%;">
+  <h4 style="text-align: center; margin: 20px 0px;">QUẢN LÝ NHÂN VIÊN VẬN CHUYỂN</h4>
+</div>
+<div style=" display: flex; justify-content: center; align-items: center;margin: 40px 0px; width: 100%;">
+ <div style="width: 50%;">
+  <p-chart type="bar" [data]="data" [options]="options" />
+ </div>
+</div>
+    <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+      <div style="width: 80%;">
+        <p-table [value]="danhSachs">
+          <ng-template pTemplate="header">
+              <tr>
+                  <th>STT</th>
+                  <th>Họ tên</th>
+                  <th>Email</th>
+                  <th>Số điện thoại</th>
+                  <th>Trạng thái nhận hàng</th>
+                  <th>Đánh giá</th>
+                  <th>Ngày tham gia</th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowIndex="rowIndex" let-data>
+              <tr>
+                  <td style="font-size: 14px;">
+                    {{ rowIndex + 1 }}
+                  </td>
+                  <td>
+                    {{ data.firstName + " " + data.lastName }}
+                  </td>
+                  <td>
+                    {{ data.email }}
+                  </td>
+                  <td>
+                    {{ data.sdt }}
+                  </td>
+                  <td>
+                    {{ data.verify ? 'Giao hàng' : 'Từ chối giao hàng' }}
+                  </td>
+                  <td>
+                    <span style="margin-right: 10px;" *ngFor="let star of getStars(data?.rate)">
+                      <i class="pi pi-star-fill" style="color: #e71e27"></i>
+                  </span>
+                  </td>
+                  <td>
+                    {{ data.createAt | date }}
+                  </td>
+                  
+                </tr>
+          </ng-template>
+      </p-table>
+      </div>
+    </div>

@@ -1,0 +1,123 @@
+<div>
+    <p-toast></p-toast>
+    <div style="background-color: #e71e27; padding-bottom: 20px;height: 300px;">
+        <h3 style="color: #fff; text-align: center; padding-top: 20px;">Quá trình vận chuyển đơn hàng</h3>
+        <div class="d-flex justify-content-center">
+            <div class="container" style="margin-left: 40px; margin-right: 40px;">
+                <p-timeline [value]="events" layout="horizontal" align="top" styleClass="customized-timeline">
+                    <ng-template pTemplate="marker" let-event>
+                        <!-- <span class="custom-marker shadow-2" [style.backgroundColor]="event.color"> -->
+                            <div style="width: 30px; height: 30px; border-radius: 100px; display: flex; justify-content: center; align-items: center; border: #1f3080 1px solid" [style.backgroundColor]="event.bgColor">
+                                <i [style.color]="event.color" [ngClass]="event.icon"></i>
+                            </div>
+                        <!-- </span> -->
+                    </ng-template>
+                    
+                      <ng-template pTemplate="content" let-event>
+                        <p-card [header]="event.status" [subheader]="event.date">
+                            <p>
+                              {{event.content}}
+                            </p>
+                            <!-- <button pButton label="Read more" class="p-button-text"></button> -->
+                        </p-card>
+                    </ng-template>
+                    
+                  
+                </p-timeline>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div style="margin: 0px 60px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div style="font-size: 20px; font-weight: 500; color: #453d3b; margin-bottom: 30px; font-weight: 600; margin-top: 20px;">Đơn hàng của bạn</div>
+              <div style="display: flex; justify-content: center; align-items: center; margin-left: 10px;">
+                <p-inputSwitch (ngModelChange)="changeStatus($event)" [(ngModel)]="checked" />
+                <span style="margin-left: 10px;">Trạng thái nhận đơn hàng</span>
+              </div>
+            </div>
+            <p-table [value]="danhSachs" [tableStyle]="{ 'min-width': '70rem' }">
+              <ng-template pTemplate="header">
+                  <tr>
+                      <th>STT</th>
+                      <th>Mã đơn hàng</th>
+                      <th>Hình thức vận chuyển</th>
+                      <th>Giá</th>
+                      <th>Sđt người nhận</th>
+                      <th>Người vận chuyển</th>
+                      <th>Trạng thái đơn hàng</th>
+                      <th>Ghi chú</th>
+                      <th>Ngày tạo</th>
+                      <th>Thao tác</th>
+                  </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowIndex="rowIndex" let-data>
+                  <tr>
+                      <td style="font-size: 14px;">
+                        {{ rowIndex + 1 }}
+                      </td>
+                      <td>
+                        {{ data.shippingCode }}
+                      </td>
+                      <td>
+                        {{ data.hinhThuc }}
+                      </td>
+                      <td>
+                        {{ data.priceValue | number }} ₫
+                      </td>
+                      <td>
+                        {{ data.recipientPhone }}
+                      </td>
+                      <td>
+                        {{ data.nguoiGiao !== ' ' ? data.nguoiGiao :"Chưa có người giao"}}
+                      </td>
+                      <td>
+                        {{ data.trangThai }}
+                      </td>
+                      <td>
+                        {{ data.note }}
+                      </td>
+                      <td>
+                        {{ data.createDate | date }}
+                      </td>
+                      <td>
+                        <!-- <button  style="background-color: cadetblue; border: 1px cadetblue solid; border-radius: 4px;"><i class="pi pi-file-edit" style="color: #fff"></i></button> -->
+                        <div style="display: flex;">
+                          <div>
+                            <p-toast />
+                            <p-confirmPopup #confirmPopupRef>
+                                <ng-template pTemplate="headless" let-message let-test>
+                                    <div class="border-round p-3">
+                                        <span>{{ message.message }}</span>
+                                        <div class="flex align-items-center gap-2 mt-3">
+                                            <p-button (onClick)="accept()" label="Có" size="small" />
+                                            <p-button (onClick)="reject()" label="Không" [outlined]="true" size="small" />
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </p-confirmPopup>
+                            <p-button (onClick)="capNhatTrangThai($event, data.orderId, 4)" icon="pi pi-check" severity="success" />
+                          </div>
+                          <!-- <div style="margin-left: 5px;">
+                            <p-toast />
+                            <p-confirmPopup #confirmPopupRef>
+                                <ng-template pTemplate="headless" let-message let-test>
+                                    <div class="border-round p-3">
+                                        <span>{{ message.message }}</span>
+                                        <div class="flex align-items-center gap-2 mt-3">
+                                            <p-button (onClick)="accept()" label="Có" size="small" />
+                                            <p-button (onClick)="reject()" label="Không" [outlined]="true" size="small" />
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </p-confirmPopup>
+                            <p-button (onClick)="capNhatTrangThai($event, data.orderId, 6)" icon="pi pi-times" severity="danger"/>
+                          </div> -->
+                        </div>
+                      </td>
+                    </tr>
+              </ng-template>
+          </p-table>
+          </div>
+    </div>
+</div>

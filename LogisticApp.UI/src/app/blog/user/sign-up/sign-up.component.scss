@@ -1,0 +1,89 @@
+.user-register-container {
+    margin-top: 30px;
+}
+.card-header:first-child{
+    background-color: #1f3080;
+    color: #fff;
+}
+:host {
+    ::ng-deep .p-fileupload .p-fileupload-buttonbar .p-button {
+        margin-right: 0.5rem;
+        font-size: 13px;
+        background-color: #102276;
+        border: 0;
+    }
+}
+
+:host {
+    ::ng-deep .p-button.p-button-icon-only {
+        width: 2.357rem;
+        padding: 0.5rem 0;
+        background-color: #102276;
+        border: 0;
+        font-size: 13px;
+    }
+}
+:host {
+    @keyframes slidedown-icon {
+        0% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(20px);
+        }
+
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    .slidedown-icon {
+        animation: slidedown-icon;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+    }
+
+    .box {
+        background-image: radial-gradient(var(--primary-300), var(--primary-600));
+        border-radius: 50% !important;
+        color: var(--primary-color-text);
+    }
+}
+:host {
+    ::ng-deep .prime-override-max-width {
+        width: 100%;
+    }
+}
+
+
+:host {
+    ::ng-deep .p-button.p-fileupload-choose {
+        position: relative;
+        overflow: hidden;
+        background-color: #1f3080;
+        border: 0;
+    }
+}
+
+:host {
+    ::ng-deep .p-fileupload .p-fileupload-buttonbar .p-button {
+        margin-right: .5rem;
+        background: #1f3080;
+        border: 0;
+    }
+}
+:host {
+    ::ng-deep .p-datatable .p-datatable-thead>tr>th {
+        background-color: #1f3080;
+        color: #fff;
+        font-size: 14px;
+    }
+}
+:host {
+    ::ng-deep .p-fileupload .p-fileupload-row>div {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+}

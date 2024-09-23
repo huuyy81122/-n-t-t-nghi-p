@@ -1,0 +1,41 @@
+<div>
+  <div style="font-size: 20px; font-weight: 500; color: #1f3080; margin-bottom: 30px; font-weight: 600;">Kết quả học bạ</div>
+  <p-table [value]="dataDiem" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Tên môn xét tuyển</th>
+            <th>Điểm học kỳ 1 lớp 10</th>
+            <th>Điểm học kỳ 2 lớp 10</th>
+            <th>Điểm học kỳ 1 lớp 11</th>
+            <th>Điểm học kỳ 2 lớp 11</th>
+            <th>Điểm học kỳ 1 lớp 12</th>
+            <th>Điểm học kỳ 2 lớp 12</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-data>
+        <tr>
+            <td style="font-size: 14px;">
+              {{ data.tenMonXetTuyen }}
+            </td>
+            <td>
+              <input class="col-12 p-inputtext-sm" [(ngModel)]="data.diem1" [value]="data.diem1" type="number" max="10" min="0" placeholder="Nhập điểm" pInputText >
+            </td>
+            <td>
+              <input class="col-12 p-inputtext-sm" [(ngModel)]="data.diem2" [value]="data.diem2" type="number" max="10" min="0" placeholder="Nhập điểm" pInputText >
+            </td>
+            <td>
+              <input class="col-12 p-inputtext-sm" [(ngModel)]="data.diem3" [value]="data.diem3" type="number" max="10" min="0" placeholder="Nhập điểm" pInputText >
+            </td>
+            <td>
+              <input class="col-12 p-inputtext-sm" [(ngModel)]="data.diem4" [value]="data.diem4" type="number" max="10" min="0" placeholder="Nhập điểm" pInputText >
+            </td>
+            <td>
+              <input class="col-12 p-inputtext-sm" [(ngModel)]="data.diem5" [value]="data.diem5" type="number" max="10" min="0" placeholder="Nhập điểm" pInputText >
+            </td>
+            <td>
+              <input class="col-12 p-inputtext-sm" [(ngModel)]="data.diem6" [value]="data.diem6" type="number" max="10" min="0" placeholder="Nhập điểm" pInputText >
+            </td>
+          </tr>
+    </ng-template>
+</p-table>
+</div>

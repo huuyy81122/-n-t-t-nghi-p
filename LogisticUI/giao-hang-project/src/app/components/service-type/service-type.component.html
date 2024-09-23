@@ -1,0 +1,112 @@
+<section class="content-header" style="padding: 0.5% !important">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-md-6">
+          <app-bread-crumb [breadCrumbs]="breadCrumbs"></app-bread-crumb>
+        </div>
+        <div class="col-md-6">
+          <button
+            nz-button
+            [nzType]="'primary'"
+            (click)="openAddModal('')"
+            style="float: right"
+          >
+            <span><i class="fas fa-plus"></i>&nbsp;Thêm mới</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="content cus-body">
+    <div class="card">
+      <div class="card-body">
+        <div class="tab-content">
+          <div class="active tab-pane">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="table-responsive">
+                  <div class="container"></div>
+                  <nz-table #basicTable [nzData]="dataTable">
+                    <thead>
+                      <tr>
+                        <th class="fw-b">ID</th>
+                        <th class="fw-b">Tên dịch vụ vận chuyển</th>
+                        <th class="fw-b">Tác vụ</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let data of basicTable.data">
+                        <td>{{ data.Service_type_id }}</td>
+                        <td>{{ data.Service_type_name }}</td>
+                        <td>
+                          <a
+                            ><span
+                              class="table-icon"
+                              nz-icon
+                              nzType="edit"
+                              (click)="openAddModal(data)"
+                              nzTheme="outline"
+                            ></span
+                          ></a>
+                          <nz-divider nzType="vertical"></nz-divider>
+                          <a
+                            ><span
+                              class="table-icon"
+                              nz-icon
+                              nzType="delete"
+                              (click)="openDeleteModal(data.Service_type_id)"
+                              nzTheme="outline"
+                            ></span
+                          ></a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </nz-table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <nz-modal
+    [(nzVisible)]="isDisplayAddModal"
+    [nzTitle]="titleModal"
+    nzCancelText="Đóng"
+    nzOkText="Xác nhận"
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="save()"
+  >
+    <ng-container *nzModalContent>
+      <form nz-form nzLayout="vertical" [formGroup]="addForm">
+        <nz-form-item class="col-md-12">
+          <nz-form-label nzRequired>Tên</nz-form-label>
+          <nz-form-control nzErrorTip="Không được bỏ trống !">
+            <input
+              formControlName="Service_type_name"
+              nz-input
+              placeholder="Nhập nội dung"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </ng-container>
+  </nz-modal>
+  
+  <nz-modal
+    [(nzVisible)]="isDisplayDelete"
+    nzTitle="Xóa bản ghi"
+    nzCancelText="Đóng"
+    nzOkText="Xác nhận"
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="delete()"
+  >
+    <ng-container *nzModalContent>
+      <h5 class="text-center">Bạn có chắc muốn xóa bản ghi này ?</h5>
+      <i class="trash-icon fa fa-trash" aria-hidden="true"></i>
+    </ng-container>
+  </nz-modal>
+  

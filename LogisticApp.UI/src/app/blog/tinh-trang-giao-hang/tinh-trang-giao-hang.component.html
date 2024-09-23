@@ -1,0 +1,91 @@
+<p-toast></p-toast>
+<div style="width: 100%;">
+  <h4 style="text-align: center; margin: 20px 0px;">CẬP NHẬT TRẠNG THÁI ĐƠN HÀNG CỦA BẠN</h4>
+</div>
+<div style="display: flex; flex-direction: row;">
+    
+    <div style="width: 70%; display: flex;flex-direction: column; margin-left: 30px;">
+      <!-- <div style="width: 80%; height: 100%;">
+        <p-scrollPanel [style]="{ width: '100%', height: '100%' }">
+          <div *ngFor="let item of danhSachs" style="border-left: 5px green solid; padding: 15px; text-align: justify; width: 100%;" class="card">
+              {{item}}
+          </div>
+        </p-scrollPanel>
+      </div> -->
+      <p-table [value]="danhSachs" [tableStyle]="{ 'width': '100%', 'height': '100%' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>STT</th>
+                <th>Mã đơn hàng</th>
+                <th>Hình thức vận chuyển</th>
+                <th>Giá</th>
+                <th>Trạng thái đơn hàng</th>
+                <th>Ngày tạo</th>
+                <th>Thao tác</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowIndex="rowIndex" let-data>
+            <tr>
+                <td style="font-size: 14px;">
+                  {{ rowIndex + 1 }}
+                </td>
+                <td>
+                  {{ data.shippingCode }}
+                </td>
+                <td>
+                  {{ data.hinhThuc }}
+                </td>
+                <td>
+                  {{ data.priceValue | number }} ₫
+                </td>
+                <td>
+                  {{ data.trangThai }}
+                </td>
+                <td>
+                  {{ data.createDate | date }}
+                </td>
+                <td>
+                  <!-- <button  style="background-color: cadetblue; border: 1px cadetblue solid; border-radius: 4px;"><i class="pi pi-file-edit" style="color: #fff"></i></button> -->
+                  <div style="display: flex;">
+                    <div>
+                      <p-toast />
+                      <p-confirmPopup #confirmPopupRef>
+                          <ng-template pTemplate="headless" let-message let-test>
+                              <div class="border-round p-3">
+                                  <span>{{ message.message }}</span>
+                                  <div class="flex align-items-center gap-2 mt-3">
+                                      <p-button (onClick)="accept()" label="Có" size="small" />
+                                      <p-button (onClick)="reject()" label="Không" [outlined]="true" size="small" />
+                                  </div>
+                              </div>
+                          </ng-template>
+                      </p-confirmPopup>
+                      <p-button (onClick)="capNhatTrangThai($event, data.orderId, 5)" icon="pi pi-check" severity="success" />
+                    </div>
+                    <div style="margin-left: 5px;">
+                      <p-toast />
+                      <p-confirmPopup #confirmPopupRef>
+                          <ng-template pTemplate="headless" let-message let-test>
+                              <div class="border-round p-3">
+                                  <span>{{ message.message }}</span>
+                                  <div class="flex align-items-center gap-2 mt-3">
+                                      <p-button (onClick)="accept()" label="Có" size="small" />
+                                      <p-button (onClick)="reject()" label="Không" [outlined]="true" size="small" />
+                                  </div>
+                              </div>
+                          </ng-template>
+                      </p-confirmPopup>
+                      <p-button (onClick)="capNhatTrangThai($event, data.orderId, 6)" icon="pi pi-times" severity="danger"/>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+        </ng-template>
+    </p-table>
+    </div>
+    <div style="width: 30%; display: flex; justify-content: center;">
+      <div style="height: 70%; width: 70%;">
+        <p-chart style="width: 50px;" type="pie" [data]="data" [options]="options" />
+      </div>
+    </div>
+</div>

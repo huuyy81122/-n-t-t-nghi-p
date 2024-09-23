@@ -1,0 +1,98 @@
+<section class="content-header" style="padding: 0.5% !important">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-md-12">
+          <button
+            nz-button
+            [nzType]="'primary'"
+            style="float: right"
+            (click)="this.toggleUploadmodal()"
+            *ngIf="!isDisable"
+          >
+            <span><i class="fas fa-upload"></i>&nbsp;Upload file</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="content cus-body">
+    <div class="card">
+      <div class="card-body">
+        <div class="tab-content">
+          <div class="active tab-pane">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="table-responsive">
+                  <div class="container"></div>
+                  <nz-table #basicTable [nzData]="FilesData">
+                    <thead>
+                      <tr>
+                        <th class="fw-b">Tên file</th>
+                        <th class="fw-b" *ngIf="!isDisable">Tác vụ</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let data of basicTable.data">
+                        <!-- <td style="white-space: break-spaces">{{(data.Ten_file | limitTo: 30) + (data.Ten_file > 30 ? '...' : '')}}</td> -->
+                        <td style="white-space: break-spaces"><a href="https://localhost:44301/uploads/{{ data.Ten_file }}" target="_blank">{{ data.Ten_file }}</a></td>
+                        
+                        <td *ngIf="!isDisable">
+                          <nz-divider nzType="vertical"></nz-divider>
+                          <a
+                            ><span
+                              class="table-icon"
+                              nz-icon
+                              nzType="delete"
+                              (click)="openDeleteFileModal(data.ID_dinh_kem)"
+                              nzTheme="outline"
+                            ></span
+                          ></a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </nz-table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<nz-modal
+  [(nzVisible)]="showDeleteFileModal"
+  nzTitle="Xóa file"
+  nzCancelText="Đóng"
+  nzOkText="Xác nhận"
+  (nzOnCancel)="toggleDeletemodal()"
+  (nzOnOk)="deleteFile()"
+>
+  <ng-container *nzModalContent>
+    <h5 class="text-center">Bạn có chắc muốn xóa bản file này?</h5>
+    <i class="trash-icon fa fa-trash" aria-hidden="true"></i>
+  </ng-container>
+</nz-modal>
+
+<nz-modal
+  [(nzVisible)]="showUpdateFileModal"
+  nzTitle="Upload file"
+  nzCancelText="Đóng"
+  nzOkText="Upload"
+  (nzOnCancel)="toggleUploadmodal()"
+  (nzOnOk)="UploadFile()"
+>
+  <ng-container *nzModalContent>
+   <input
+   accept="image/png, image/gif, image/jpeg" 
+            type="file"
+            class="form-control"
+            style="height: 45px !important"
+            name="currentInput"
+            [(ngModel)]="currentInput"
+            (change)="onFileSelected($event)"
+          />
+  </ng-container>
+</nz-modal>

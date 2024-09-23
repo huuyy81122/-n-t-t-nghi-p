@@ -1,0 +1,115 @@
+<section class="content-header" style="padding: 0.5% !important">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-md-6">
+                <app-bread-crumb [breadCrumbs]="breadCrumbs"></app-bread-crumb>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="content cus-body" style="font-family: sans-serif; font-size: 14px">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <nz-form-label>Năm</nz-form-label>
+                    <br />
+                    <nz-select [(ngModel)]="Nam_ft" nzAllowClear style="width: 100%"
+                        (ngModelChange)="this.getList()">
+                        <nz-option [nzValue]="0" nzLabel="Tất cả"></nz-option>
+                        <nz-option [nzValue]="2023" nzLabel="2023"></nz-option>
+                        <nz-option [nzValue]="2022" nzLabel="2022"></nz-option>
+                        <nz-option [nzValue]="2021" nzLabel="2021"></nz-option>
+                    </nz-select>
+                </div>
+                <div class="col-md-2">
+                    <nz-form-label>Tháng</nz-form-label>
+                    <br />
+                    <nz-select [(ngModel)]="Thang_ft" nzAllowClear style="width: 100%"
+                        (ngModelChange)="this.getList()">
+                        <nz-option [nzValue]="0" nzLabel="Tất cả"></nz-option>
+                        <nz-option [nzValue]="12" nzLabel="12"></nz-option>
+                        <nz-option [nzValue]="11" nzLabel="11"></nz-option>
+                        <nz-option [nzValue]="10" nzLabel="10"></nz-option>
+                        <nz-option [nzValue]="9" nzLabel="9"></nz-option>
+                        <nz-option [nzValue]="8" nzLabel="8"></nz-option>
+                        <nz-option [nzValue]="7" nzLabel="7"></nz-option>
+                        <nz-option [nzValue]="6" nzLabel="6"></nz-option>
+                        <nz-option [nzValue]="5" nzLabel="5"></nz-option>
+                        <nz-option [nzValue]="4" nzLabel="4"></nz-option>
+                        <nz-option [nzValue]="3" nzLabel="3"></nz-option>
+                        <nz-option [nzValue]="2" nzLabel="2"></nz-option>
+                        <nz-option [nzValue]="1" nzLabel="1"></nz-option>
+                    </nz-select>
+                </div>
+                <div class="col-md-3">
+                    <nz-form-label>Loại hình vận chuyển</nz-form-label>
+                    <br />
+                    <nz-select [(ngModel)]="Transport_type_id_ft" nzAllowClear style="width: 100%"
+                        (ngModelChange)="this.getList()">
+                        <nz-option [nzValue]="0" nzLabel="Tất cả"></nz-option>
+                        <nz-option *ngFor="let item of this.listTransport" [nzValue]="item.Transport_type_id"
+                            [nzLabel]="item.Transport_type_name"></nz-option>
+                    </nz-select>
+                </div>
+                <div class="col-md-3">
+                    <nz-form-label>Dịch vụ vận chuyển</nz-form-label>
+                    <br />
+                    <nz-select [(ngModel)]="Service_type_id_ft" nzAllowClear style="width: 100%"
+                        (ngModelChange)="this.getList()">
+                        <nz-option [nzValue]="0" nzLabel="Tất cả"></nz-option>
+                        <nz-option *ngFor="let item of this.listService" [nzValue]="item.Service_type_id"
+                            [nzLabel]="item.Service_type_name"></nz-option>
+                    </nz-select>
+                </div>
+                <div class="col-md-2">
+                    <nz-form-label>Trạng thái</nz-form-label>
+                    <br />
+                    <nz-select [(ngModel)]="Status_ft" nzAllowClear style="width: 100%"
+                        (ngModelChange)="this.getList()">
+                        <nz-option [nzValue]="0" nzLabel="Tất cả"></nz-option>
+                        <nz-option [nzValue]="1" nzLabel="Chưa duyệt"></nz-option>
+                        <nz-option [nzValue]="2" nzLabel="Đang giao"></nz-option>
+                        <nz-option [nzValue]="3" nzLabel="Đang hoàn thành"></nz-option>
+                        <nz-option [nzValue]="4" nzLabel="Đã hủy"></nz-option>
+                    </nz-select>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content cus-body">
+    <div class="card">
+        <div class="card-body">
+            <div class="tab-content">
+                <div class="active tab-pane">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <nz-table #basicTable [nzData]="listOfDisplayData">
+                                    <thead>
+                                        <tr>
+                                            <th class="fw-b">Năm</th>
+                                            <th class="fw-b">Tháng</th>
+                                            <th class="fw-b">Tổng tiền (VNĐ)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data of basicTable.data">
+                                            <td>{{ data.Nam }}</td>
+                                            <td>{{ data.Thang }}</td>
+                                            <td>{{ data.Total | number}}</td>
+                                        </tr>
+                                    </tbody>
+                                </nz-table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,56 @@
+:host {
+    ::ng-deep .p-timeline.p-timeline-horizontal .p-timeline-event-content {
+        padding: 1rem 0;
+        width: 250px;
+        height: 600px;
+    }
+}
+
+:host {
+    ::ng-deep .p-card .p-card-title {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+}
+
+:host {
+    ::ng-deep .p-card .p-card-body {
+        padding: 1.5rem;
+        height: 350px;
+        text-align: justify;
+    }
+}
+:host {
+    ::ng-deep .p-datatable .p-datatable-thead>tr>th {
+        background-color: #1f3080;
+        color: #fff;
+        font-size: 14px;
+    }
+}
+:host {
+    ::ng-deep .prime-override-60-width {
+        //margin-top: 10px;
+        width: 75%;
+    }
+}
+:host {
+    ::ng-deep .prime-override-max-width {
+        margin-top: 10px;
+        width: 100%;
+    }
+}
+:host {
+    ::ng-deep .pi-check-circle:before {
+        content: "\e90a";
+        color: green;
+        font-weight: bolder;
+    }
+}
+:host {
+    ::ng-deep .pi-lock:before {
+        content: "\e95f";
+        color: red;
+        font-weight: bolder;
+    }
+}

@@ -1,0 +1,11 @@
+<div class="shipper-selection-container">
+    <h2>Chọn người giao hàng</h2>
+    <div *ngFor="let shipper of shippers" class="shipper-item">
+      <p>ID Shipper: {{ shipper.id }}</p>
+      <p>Tên: {{ shipper.name }}</p>
+      <p>Số điện thoại: {{ shipper.phone }}</p>
+      <img [src]="shipper.avatar" alt="Avatar" style="width: 100px; height: 100px; border-radius: 50%;">
+      <button (click)="selectShipper(shipper)">Chọn</button>
+    </div>
+  </div>
+  <p>shipper-selection works!</p>

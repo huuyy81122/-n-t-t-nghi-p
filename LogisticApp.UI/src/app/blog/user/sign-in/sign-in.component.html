@@ -1,0 +1,50 @@
+<div class="user-login-container container" style="width: 55%;" [@fadeIn]>
+    <p-messages></p-messages>
+    <div class="card">
+        <div class="card-header">
+            <h5 style="color: #fff;">Đăng nhập</h5>
+        </div>
+        <div class="card-body">
+            <form #signInForm="ngForm" (ngSubmit)="signInForm.valid ? doSignIn() : null " novalidate role="form">
+                <div class="row mb-3">
+                    <label class="col-md-2 col-form-label d-flex justify-content-end  pe-3">Email：</label>
+                    <div class="col-md-10">
+                        <input required name="userName" [(ngModel)]="signInInfo.userName" #userName="ngModel"
+                            type="text" class="form-control"
+                            [ngClass]="{ 'is-invalid': signInForm.submitted&&!userName.valid }"
+                            placeholder="Nhập Email">
+                        <div *ngIf="signInForm.submitted&&!userName.valid" class="text-danger">Email không hợp lệ</div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-md-2 col-form-label d-flex justify-content-end  pe-3">Mật khẩu：</label>
+                    <div class="col-md-10">
+                        <input required [(ngModel)]="signInInfo.password" name="password"
+                            #password="ngModel" type="password" class="form-control"
+                            [ngClass]="{ 'is-invalid': signInForm.submitted&&!password.valid }" placeholder="Nhập mật khẩu">
+                        <div *ngIf="signInForm.submitted&&!password.valid" class="text-danger">Mật khẩu không hợp lệ</div>
+                    </div>
+                </div>
+
+                <!-- <div class="row mb-3 align-items-center">
+                    <label class="col-md-2 col-form-label d-flex justify-content-end  pe-3">Ghi nhớ đăng nhập：</label>
+                    <div class="col-md-10">
+                        <div class="form-check">
+                            <input [(ngModel)]="signInInfo.rememberMe" name="rememberMe" #rememberMe="ngModel"
+                                type="checkbox" class="form-check-input"
+                                [ngClass]="{ 'is-invalid': signInForm.submitted&&!rememberMe.valid }">
+                        </div>
+                    </div>
+                </div> -->
+                <div *ngIf="error" class="offset-md-2 col-md-10 alert alert-danger">{{error}}</div>
+                <div class="row mb-3">
+                    <div class="offset-md-2 col-md-10">
+                        <button style="background-color: #f34c4c; border: #f34c4c;" type="submit" class="btn btn-primary btn-margin-1rem">Đăng nhập</button>
+                        <button routerLink="/register" type="button" style="background-color: #fff; border: solid 1px #f34c4c; color: #f34c4c;" class="btn btn-primary btn-margin-1rem">Bạn chưa có tài khoản ?</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <block-spinner></block-spinner>
+</div>

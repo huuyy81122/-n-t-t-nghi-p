@@ -1,0 +1,65 @@
+
+
+<section class="content cus-body" style="font-family: sans-serif; font-size: 14px">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <nz-form-label>Loại hình vận chuyển</nz-form-label>
+                    <br />
+                    <nz-select [(ngModel)]="Transport_type_id_ft" nzAllowClear style="width: 100%"
+                        (ngModelChange)="this.getList()">
+                        <nz-option [nzValue]="0" nzLabel="Tất cả"></nz-option>
+                        <nz-option *ngFor="let item of this.listTransport" [nzValue]="item.Transport_type_id"
+                            [nzLabel]="item.Transport_type_name"></nz-option>
+                    </nz-select>
+                </div>
+                <div class="col-md-6">
+                    <nz-form-label>Dịch vụ vận chuyển</nz-form-label>
+                    <br />
+                    <nz-select [(ngModel)]="Service_type_id_ft" nzAllowClear style="width: 100%"
+                        (ngModelChange)="this.getList()">
+                        <nz-option [nzValue]="0" nzLabel="Tất cả"></nz-option>
+                        <nz-option *ngFor="let item of this.listService" [nzValue]="item.Service_type_id"
+                            [nzLabel]="item.Service_type_name"></nz-option>
+                    </nz-select>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content cus-body">
+    <div class="card">
+        <div class="card-body">
+            <div class="tab-content">
+                <div class="active tab-pane">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <nz-table #basicTable [nzData]="listOfDisplayData">
+                                    <thead>
+                                        <tr>
+                                            <th class="fw-b">Loại hình vận chuyển</th>
+                                            <th class="fw-b">Dịch vụ vận chuyển</th>
+                                            <th class="fw-b">KM tối thiểu</th>
+                                            <th class="fw-b">Giá (VNĐ)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data of basicTable.data">
+                                            <td>{{ data.Transport_type_name }}</td>
+                                            <td>{{ data.Service_type_name }}</td>
+                                            <td>{{ data.Minimun_km}}</td>
+                                            <td>{{ data.Price | number}}</td>
+                                        </tr>
+                                    </tbody>
+                                </nz-table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

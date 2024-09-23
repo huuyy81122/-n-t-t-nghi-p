@@ -1,0 +1,136 @@
+<section class="content-header" style="padding: 0.5% !important">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-md-12">
+          <button
+            nz-button
+            [nzType]="'primary'"
+            (click)="openAddModal('')"
+            style="float: right" 
+            *ngIf="isAdmin"
+          >
+            <span><i class="fas fa-plus"></i>&nbsp;Thêm mới</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="content cus-body">
+    <div class="card">
+      <div class="card-body">
+        <div class="tab-content">
+          <div class="active tab-pane">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="table-responsive">
+                  <div class="container"></div>
+                  <nz-table #StatusTable [nzData]="StatusDatatable">
+                    <thead>
+                      <tr>
+                        <th class="fw-b">ID</th>
+                        <th class="fw-b">Nội dung</th>
+                        <th class="fw-b">Loại trạng thái</th>
+                        <th class="fw-b">Thời gian cập nhật</th>
+                        <th class="fw-b" *ngIf="isAdmin">Tác vụ</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let data of StatusTable.data">
+                        <td>{{ data.Order_status_id }}</td>
+                        <td>{{ data.Order_status_content }}</td>
+                        <td>{{ data.Order_status_type==1?"Đang đến kho": "Đang giao" }}</td>
+                        <td>{{ data.Order_status_date | date : "dd/MM/yyyy HH:MM"}}</td>
+                        <td *ngIf="isAdmin">
+                          <a
+                            ><span
+                              class="table-icon"
+                              nz-icon
+                              nzType="edit"
+                              (click)="openAddModal(data)"
+                              nzTheme="outline"
+                            ></span
+                          ></a>
+                          <nz-divider nzType="vertical"></nz-divider>
+                          <a
+                            ><span
+                              class="table-icon"
+                              nz-icon
+                              nzType="delete"
+                              (click)="openDeleteModal(data.Order_status_id)"
+                              nzTheme="outline"
+                            ></span
+                          ></a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </nz-table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <nz-modal
+    [(nzVisible)]="isDisplayAddModal"
+    [nzTitle]="titleModal"
+    nzCancelText="Đóng"
+    nzOkText="Xác nhận"
+    (nzOnCancel)="toogleisDisplayAddModal()"
+    (nzOnOk)="save()"
+    [nzWidth]="900"
+  >
+    <ng-container *nzModalContent>
+      <form nz-form nzLayout="vertical" [formGroup]="addForm">
+        <div class="row">
+        <nz-form-item class="col-md-4">
+          <nz-form-label nzRequired>Nội dung</nz-form-label>
+          <nz-form-control nzErrorTip="Không được bỏ trống !">
+            <input
+              formControlName="Order_status_content"
+              nz-input
+              placeholder="Nhập nội dung"
+            />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item class="col-md-4">
+          <nz-form-label nzRequired>Loại cập nhật</nz-form-label>
+          <nz-form-control nzErrorTip="Không được bỏ trống !">
+            <nz-select formControlName="Order_status_type" nzAllowClear>
+              <nz-option [nzValue]="1" nzLabel="Đang đến kho"></nz-option>
+              <nz-option [nzValue]="2" nzLabel="Đang giao"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item class="col-md-4">
+          <nz-form-label nzRequired>Thời gian</nz-form-label>
+          <nz-form-control nzErrorTip="Không được bỏ trống !">
+            <nz-date-picker
+            formControlName="Order_status_date"
+            nzShowTime
+            nzFormat="yyyy-MM-dd HH:mm:ss"
+          ></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      </form>
+    </ng-container>
+  </nz-modal>
+  
+  <nz-modal
+    [(nzVisible)]="isDisplayDelete"
+    nzTitle="Xóa bản ghi"
+    nzCancelText="Đóng"
+    nzOkText="Xác nhận"
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="delete()"
+  >
+    <ng-container *nzModalContent>
+      <h5 class="text-center">Bạn có chắc muốn xóa bản ghi này ?</h5>
+      <i class="trash-icon fa fa-trash" aria-hidden="true"></i>
+    </ng-container>
+  </nz-modal>
+  

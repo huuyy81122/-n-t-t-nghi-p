@@ -1,0 +1,76 @@
+<div style="width: 100%; background-image: url('../../../assets/imgs/newww.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; padding-bottom: 30px;">
+  <p-toast></p-toast>
+  <h3 style="text-align: center; color: #f6f4f8; padding-top: 20px;">Tra cứu đơn hàng</h3>
+  <div class="container" style="margin-top: 40px; margin-bottom: 20px;">
+    <p-card >
+      <div style="display: flex; justify-content: center;">
+        <div class="col-8" style="margin-right: 20px;">
+          <label style="margin-bottom: 6px;">Mã vận đơn :</label>
+          <input class="p-inputtext-sm col-12" [(ngModel)]="maDonHang" type="text" placeholder="Nhập mã vận đơn của bạn" pInputText>
+        </div>
+        <!-- <div class="col-4">
+          <label style="margin-bottom: 6px;">Đợt xét tuyển:</label>
+          <p-dropdown class="p-inputtext-sm col-4" styleClass="prime-override-max-width" [(ngModel)]="idDotDangKy" [options]="dotXetTuyen" optionLabel="tenDotDangKy" optionValue="idDotDangKy" [showClear]="true" placeholder="Lựa chọn đợt xét tuyển"></p-dropdown>
+        </div> -->
+      </div>
+      <!-- <div style="display: flex; justify-content: center; margin-top: 10px; margin-left: -10px;">
+        <div class="col-8">
+          <small>Thí sinh/phụ huynh thí sinh nhập thông tin CMND/CCCD, đợt xét tuyển để tra cứu kết quả xét tuyển</small>
+          <div style="flex-direction: column;" class="d-flex">
+            <small style="font-weight: 600; color: red;">Lưu ý: </small>
+            <small> Thí sinh chỉ có thể tra cứu kết quả trong đợt tra cứu, nếu đã thực hiện đăng ký đúng đợt mà không tra cứu được kết quả. Xin gửi thắc mắc tới: tuyensinh@huce.edu.vn</small>
+          </div>
+        </div>
+      </div> -->
+      <div style="display: flex; justify-content: center; align-items: center; margin-top: 40px;">
+        <button (click)="handleTraCuu()" style="background-color: #1f3080; padding: 10px 10px; color: #fff; border-radius: 10px; border: 0; font-size: 13px; margin-bottom: 20px;"><i class="pi pi-search" style="color: #fff; margin-right: 6px; font-size: 12px;"></i>Tra cứu</button>
+      </div>
+    </p-card>
+  </div>
+</div>
+<div class="container">
+  <div style="font-size: 20px; font-weight: 500; color: #1f3080; margin-bottom: 30px; font-weight: 600; margin-top: 20px;">Đơn hàng bạn tìm kiếm</div>
+  <p-table [value]="danhSachs" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>STT</th>
+        <th>Mã vận đơn </th>
+        <th>Họ tên người gửi</th>
+        <th>SĐT </th>
+        <th>Hình thức vận chuyển</th>
+        <th>Kiểu hàng hóa</th>
+        <th>Trọng lượng</th>
+        <th>Trạng thái</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowIndex="rowIndex" let-data>
+      <tr>
+        <td style="font-size: 14px;">
+          {{ rowIndex + 1 }}
+        </td>
+        <td>
+          {{ data.shippingCode }}
+        </td>
+        <td>
+          {{ data.recipientName }}
+        </td>
+        <td>
+          {{ data.recipientPhone }}
+        </td>
+        <td>
+          {{ data.hinhThuc }}
+        </td>
+        <td>
+          {{ data.dichVu }}
+        </td>
+        <td>
+          {{ data.khoiLuong }}
+        </td>
+        <td>
+          {{ data.trangThai }}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <block-spinner></block-spinner>
+</div>

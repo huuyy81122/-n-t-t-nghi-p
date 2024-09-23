@@ -1,0 +1,257 @@
+<div class="row" style="height: 60px; background-color: #000c20;color: #7b8693; border-bottom: solid 1px #181d27;">
+    <div class="col-md-6" style="display: flex; justify-content: center; padding-top: 15px;">
+        <p style="display: inline-block;">Số điện thoại: 024.955.955</p>
+        <p style="display: inline-block; margin-left: 50px;">Email: SuperLogisticclient.vn</p>
+    </div>
+    <div class="col-md-6" style="display: flex; justify-content: center; padding-top: 15px;">
+        <a style="display: inline-block;"><i class="fa-brands fa-facebook"></i></a>
+        <a style="display: inline-block; margin-left: 10px;"><i class="fa-brands fa-youtube"></i></a>
+        <a style="display: inline-block;margin-left: 10px;"><i class="fa-brands fa-tiktok"></i></a>
+        <a style="display: inline-block;margin-left: 10px;"><i class="fa-brands fa-google"></i></a>
+    </div>
+</div>
+<div class="row" style="height: 130px; background-color: #000c20; overflow: hidden;">
+    <div class="col-2" style="display: flex; justify-content: center; align-items: center;">
+        <img style="width: 100px; height: 100px;" src="../../assets/img/logo.png" />
+    </div>
+    <div class="col-10" style="display: flex; justify-content: center; align-items: center;">
+        <nav style="display: flex; gap: 20px;">
+            <a [routerLink]="['/home']" class="nav-link"
+                style="font-size: 22px !important; color:#fff; text-align: center;">TRANG CHỦ</a>
+            <a [routerLink]="['/pricing']" class="nav-link"
+                style="font-size: 22px !important; color:#fff; text-align: center;">BẢNG GIÁ</a>
+            <a [routerLink]="['/order-lookup']" class="nav-link"
+                style="font-size: 22px !important; color:#fff; text-align: center;">TRA CỨU ĐƠN HÀNG</a>
+            <a [routerLink]="['/recruitment']" class="nav-link"
+                style="font-size: 22px !important; color:#fff; text-align: center;">TUYỂN DỤNG</a>
+            <a *ngIf="isLogin" (click)="toggleisCustomerProfileModal()" class="nav-link"
+                style="font-size: 22px !important; color:#fff; text-align: center;">{{email}}</a>
+            <a *ngIf="!isLogin" (click)="toggleAddModal()" class="nav-link"
+                style="font-size: 22px !important; color:#fff; text-align: center;">ĐĂNG NHẬP / ĐĂNG KÝ</a>
+        </nav>
+    </div>
+</div>
+
+<router-outlet></router-outlet>
+
+<div class="row">
+    <div class="col-md-12">
+        <footer style="background-color: #000c20; overflow: hidden;"
+            class="text-center text-lg-start bg-white text-muted">
+
+            <!-- Section: Links  -->
+            <section class="">
+                <div class="container text-center text-md-start mt-5">
+                    <!-- Grid row -->
+                    <div class="row mt-3">
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                            <!-- Content -->
+                            <h6 class="text-uppercase fw-bold mb-4">
+                                <i class="fas fa-gem me-3 text-secondary"></i>Super Logistic
+                            </h6>
+                            <p>
+                                Here you can use rows and columns to organize your footer content. Lorem ipsum
+                                dolor sit amet, consectetur adipisicing elit.
+                            </p>
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                            <!-- Links -->
+                            <h6 class="text-uppercase fw-bold mb-4">
+                                Products
+                            </h6>
+                            <p>
+                                <a href="/home" class="text-reset">Angular</a>
+                            </p>
+                            <p>
+                                <a href="/home" class="text-reset">React</a>
+                            </p>
+                            <p>
+                                <a href="/home" class="text-reset">Vue</a>
+                            </p>
+                            <p>
+                                <a href="/home" class="text-reset">Laravel</a>
+                            </p>
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                            <!-- Links -->
+                            <h6 class="text-uppercase fw-bold mb-4">
+                                Useful links
+                            </h6>
+                            <p>
+                                <a href="/home" class="text-reset">Pricing</a>
+                            </p>
+                            <p>
+                                <a href="/home" class="text-reset">Settings</a>
+                            </p>
+                            <p>
+                                <a href="/home" class="text-reset">Orders</a>
+                            </p>
+                            <p>
+                                <a href="/home" class="text-reset">Help</a>
+                            </p>
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                            <!-- Links -->
+                            <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                            <p><i class="fas fa-home me-3 text-secondary"></i> New York, NY 10012, US</p>
+                            <p>
+                                <i class="fas fa-envelope me-3 text-secondary"></i>
+                                infoexample.com
+                            </p>
+                            <p><i class="fas fa-phone me-3 text-secondary"></i> + 01 234 567 88</p>
+                            <p><i class="fas fa-print me-3 text-secondary"></i> + 01 234 567 89</p>
+                        </div>
+                        <!-- Grid column -->
+                    </div>
+                    <!-- Grid row -->
+                </div>
+            </section>
+            <!-- Section: Links  -->
+
+            <!-- Copyright -->
+            <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+                © 2023 Copyright:
+                <a class="text-reset fw-bold" href="#">Super Logistic</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+    </div>
+    <!-- Footer -->
+
+    <!-- Footer -->
+</div>
+
+<nz-modal [(nzVisible)]="isDisplayAddModal" nzCancelText="Đóng" nzOkText="Xác nhận" [nzWidth]="700"
+    [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()">
+    <ng-container *nzModalContent>
+        <!-- Pills navs -->
+        <nz-tabset>
+            <nz-tab nzTitle="Đăng nhập">
+                <form nz-form nzLayout="vertical" [formGroup]="loginForm">
+                    <div class="row">
+                        <nz-form-item class="col-md-6">
+                            <nz-form-label nzRequired>Email</nz-form-label>
+                            <nz-form-control nzErrorTip="Không được bỏ trống !">
+                                <input formControlName="Email" nz-input placeholder="Nhập nội dung" />
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item class="col-md-6">
+                            <nz-form-label nzRequired>Password</nz-form-label>
+                            <nz-form-control nzErrorTip="Không được bỏ trống !">
+                                <input formControlName="Password" nz-input placeholder="Nhập nội dung" />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 center">
+                            <button nz-button (click)="login()" nzType="primary">Đăng nhập</button>
+                            
+                        </div>
+                    </div>
+                </form>
+            </nz-tab>
+            <nz-tab nzTitle="Đăng ký">
+                <form nz-form nzLayout="vertical" [formGroup]="registerForm">
+                    <div class="row">
+                        <nz-form-item class="col-md-6">
+                            <nz-form-label nzRequired>Họ tên</nz-form-label>
+                            <nz-form-control nzErrorTip="Không được bỏ trống !">
+                                <input formControlName="Full_name" nz-input placeholder="Nhập nội dung" />
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item class="col-md-6">
+                            <nz-form-label nzRequired>Ngày sinh</nz-form-label>
+                            <nz-form-control nzErrorTip="Không được bỏ trống !">
+                                <nz-date-picker formControlName="Birth_date"></nz-date-picker>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div class="row">
+                        <nz-form-item class="col-md-12">
+                            <nz-form-label nzRequired>Địa chỉ</nz-form-label>
+                            <nz-form-control nzErrorTip="Không được bỏ trống !">
+                                <input formControlName="Address" nz-input placeholder="Nhập nội dung" />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div class="row">
+                        <nz-form-item class="col-md-12">
+                            <nz-form-label nzRequired>Email</nz-form-label>
+                            <nz-form-control nzErrorTip="Không được bỏ trống !">
+                                <input formControlName="Email" nz-input placeholder="Nhập nội dung" />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 center">
+                            <button nz-button (click)="register()" nzType="primary">Đăng ký</button>
+                            
+                        </div>
+                    </div>
+                </form>
+            </nz-tab>
+        </nz-tabset>
+    </ng-container>
+</nz-modal>
+
+
+<nz-modal [(nzVisible)]="isCustomerProfileModal" nzCancelText="Đóng" nzOkText="Xác nhận" [nzWidth]="700"
+    [nzFooter]="modalCustomerProfileFooter" (nzOnCancel)="handleCancel()">
+    <ng-container *nzModalContent>
+        <!-- Pills navs -->
+        <nz-tabset>
+            <nz-tab nzTitle="Trang của tôi">
+                <h5> Xin chào </h5>
+                <hr />
+                <ul class="list-group">
+                    <li class="list-group-item"><a [routerLink]="['/customer-order']"
+                            (click)="toggleisCustomerProfileModal()" class="nav-link"
+                            style="font-size: 22px !important; "><i class="fa fa-list-ol" aria-hidden="true"></i>&nbsp;
+                            Đơn hàng của tôi</a></li>
+                </ul>
+            </nz-tab>
+            <nz-tab nzTitle="Đổi mật khẩu">
+                <form nz-form nzLayout="vertical" [formGroup]="addForm">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <nz-form-item class="col-md-12">
+                                <nz-form-label nzRequired>Mật khẩu hiện tại</nz-form-label>
+                                <nz-form-control nzErrorTip="Không được bỏ trống !">
+                                    <input formControlName="CurrentPass" nz-input placeholder="Nhập mật khẩu"
+                                        type="password" />
+                                </nz-form-control>
+                            </nz-form-item>
+                            <nz-form-item class="col-md-12">
+                                <nz-form-label nzRequired>Mật khẩu mới</nz-form-label>
+                                <nz-form-control nzErrorTip="Không được bỏ trống !">
+                                    <input formControlName="Password" nz-input placeholder="Nhập mật khẩu"
+                                        type="password" />
+                                </nz-form-control>
+                            </nz-form-item>
+                            <nz-form-item class="col-md-12">
+                                <nz-form-label nzRequired>Nhập lại mật khẩu mới</nz-form-label>
+                                <nz-form-control nzErrorTip="Không được bỏ trống !">
+                                    <input formControlName="ConfirmPass" nz-input placeholder="Nhập lại mật khẩu"
+                                        type="password" />
+                                </nz-form-control>
+                                <br />
+                                <button nz-button class="login-form-button login-form-margin" (click)="save()"
+                                    [nzType]="'primary'">Xác nhận</button>
+                            </nz-form-item>
+                        </div>
+                    </div>
+                </form>
+            </nz-tab>
+        </nz-tabset>
+    </ng-container>
+</nz-modal>
